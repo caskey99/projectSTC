@@ -1,0 +1,25 @@
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 304px;
+  border-right: 1px solid #C8CACC;
+  overflow-y: scroll;
+}
+.messages-list-header {
+  min-height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid #C8CACC;
+  -webkit-user-select: none;
+  font-family: "Inter-SemiBold", sans-serif;
+  font-weight: 600;
+}
+.messages-list-items {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/*# sourceMappingURL=messages.css.map */

@@ -1,0 +1,136 @@
+.bottom-document {
+  background-color: white;
+  min-height: 56px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #C8CACC;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.bottom-document .left-menu {
+  margin-left: 24px;
+  -webkit-user-select: none;
+}
+.bottom-document .right-menu {
+  width: 444px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  -webkit-user-select: none;
+}
+.bottom-document button {
+  width: 137px;
+  height: 32px;
+  background-color: #ebecec;
+  cursor: pointer;
+}
+.bottom-document button:hover {
+  cursor: pointer;
+  transition: 0.6s;
+}
+.bottom-document .btn-send-true {
+  width: 140px;
+  background-color: #007562;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.bottom-document .btn-send-true svg {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+}
+.bottom-document .btn-send-true span {
+  width: 88px;
+  height: 16px;
+}
+.bottom-document .btn-send-true:hover {
+  background-color: #005243;
+}
+.bottom-document .btn-document:hover {
+  background-color: #d2d2d2;
+}
+.bottom-document .btn-document:not(:hover) {
+  transition: 0.3s;
+}
+.bottom-document .box-spinner {
+  border: 1px solid #cfd0d2;
+  width: 96px;
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.bottom-document .box-spinner .in-num {
+  width: 15px;
+  height: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.bottom-document .box-spinner .module-strip {
+  width: 20px;
+  height: 1px;
+  background-color: #cfd0d2;
+  transform: rotate(90deg);
+}
+.bottom-document .box-spinner .module-minus {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.bottom-document .box-spinner .module-minus:hover {
+  cursor: pointer;
+  background-color: #d2d2d2;
+  transition: 0.6s;
+}
+.bottom-document .box-spinner .module-minus:not(:hover) {
+  background-color: #FFFFFF;
+  transition: 0.3s;
+}
+.bottom-document .box-spinner .module-minus .minus {
+  position: absolute;
+  width: 10px;
+  height: 1px;
+  background-color: black;
+}
+.bottom-document .box-spinner .module-plus {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 4px;
+}
+.bottom-document .box-spinner .module-plus:hover {
+  cursor: pointer;
+  background-color: #d2d2d2;
+  transition: 0.6s;
+}
+.bottom-document .box-spinner .module-plus:not(:hover) {
+  transition: 0.3s;
+}
+.bottom-document .box-spinner .module-plus::before, .bottom-document .box-spinner .module-plus::after {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 1px;
+  background-color: black;
+}
+.bottom-document .box-spinner .module-plus::before {
+  transform: rotate(90deg);
+}
+
+/*# sourceMappingURL=BottomDocument.css.map */

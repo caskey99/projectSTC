@@ -1,0 +1,32 @@
+[
+  {
+    "blank": {
+      "value": null
+    },
+    "name": "Текст",
+    "type": "text",
+    "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<skif-document id='skif.other.text' name='Текст'>\n    <skif-text-area id='value' name='Ввод'></skif-text-area>\n</skif-document>\n</body>\n</html>\n"
+  },
+  {
+    "blank": {
+      "comment": null,
+      "meal": null
+    },
+    "name": "Прием пищи",
+    "type": "meal",
+    "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<skif-document id='meal' name='Текст'>\n    <skif-select id='meal' value='1'>\n        <skif-item text='Завтрак'></skif-item>\n        <skif-item text='Обед'></skif-item>\n        <skif-item text='Ужин'></skif-item>\n    </skif-select>\n    <skif-text-line id='comment' name='Комментарий'></skif-text-line>\n</skif-document>\n</body>\n</html>\n"
+  },
+  {
+    "blank": {
+      "signature": {
+        "name": null,
+        "post": null
+      },
+      "time": null
+    },
+    "name": "Запрос",
+    "type": "signature",
+    "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<skif-document id='signature' name='Запрос'>\n    <skif-group id='signature' name='Подпись'>\n        <skif-text-line id='post' name='Должность' required='true'></skif-text-line>\n        <skif-text-line id='name' name='ФИО' required='true'></skif-text-line>\n    </skif-group>\n    <skif-date-time id='time' name='Время' type='time'></skif-date-time>\n</skif-document>\n</body>\n</html>\n"
+  }
+]
+

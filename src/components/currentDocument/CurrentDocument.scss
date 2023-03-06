@@ -1,0 +1,223 @@
+@import "../../styles/_vars.scss";
+
+.current-document {
+  min-width: 816px;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  margin-top: 24px;
+
+  &-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #C4C4C4;
+
+
+    & h3 {
+      font-size: 16px;
+      line-height: 20px;
+      color: #000000;
+      font-weight: 600;
+
+      height: 36px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 13px 24px;
+    }
+
+    & .icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-right: 22px;
+      cursor: pointer;
+    }
+  }
+
+  &-container {
+    margin: 32px;
+
+    &-identity {
+      display: flex;
+      flex-direction: column;
+      @include f400;
+      margin-bottom: 15px;
+
+      & span {
+        font-size: 13px;
+        color: rgba(40, 43, 45, 0.92);
+      }
+
+      & input {
+        width: 514px;
+        padding: 14px 16px;
+        background: rgba(40, 43, 45, 0.02);
+        border: 1px solid #686D71;
+        outline: none;
+        font-size: 14px;
+        @include f400;
+      }
+
+      & .identity-subtitle {
+        font-size: 12px;
+        color: rgba(40, 43, 45, 0.6);
+      }
+    }
+
+    &-project {
+      display: flex;
+      flex-direction: row;
+      background-color: #F9FAFA;
+      width: 100%;
+      margin-bottom: 15px;
+
+      & span {
+        width: 242px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        @include f400;
+      }
+
+      & select {
+        width: 263px;
+        height: 32px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid #C8CACC;
+        padding: 7px 12px;
+        margin: 8px 16px;
+
+        font-size: 13px;
+        font-style: italic;
+        color: rgba(40, 43, 45, 0.6);
+        @include f500;
+      }
+    } // end project
+
+    &-timer {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-bottom: 24px;
+
+      & .timer-subtitle {
+        width: 242px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-left: 12px;
+        align-items: center;
+      }
+
+      & .timer-metric {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      & input {
+        width: 142px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid #C8CACC;
+        height: 32px;
+        margin: 0 16px;
+        outline: none;
+        padding-left: 12px;
+        color: rgba(40, 43, 45, 0.6);
+      }
+      & input[type="time"]::-webkit-calendar-picker-indicator {
+        background: none;
+      }
+    }
+
+    &-nameObject {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 15px;
+
+      & span {
+        width: 242px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-left: 12px;
+        align-items: center;
+        font-size: 14px;
+        @include f400;
+      }
+
+      & input {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        height: 32px;
+        margin: 0 16px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid #C8CACC;
+        padding-left: 12px;
+        outline: none;
+
+      }
+    }
+  }
+}
+
+.drop-down-menu {
+  width: 752px;
+  height: 48px;
+  background-color: #F9FAFA;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  outline: none;
+
+  &-value {
+    width: 242px;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 12px;
+  }
+  &-selection-field {
+    width: 459px;
+    height: 32px;
+    border: 1px solid #C8CACC;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 24px;
+    margin-left: 15px;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    appearance:none;
+    padding-left: 20.94px;
+    &:required:invalid {
+      color: #7c7e7f;
+    }
+
+    &:not([multiple]) {
+      background-position: calc(100% - 20.36px);
+      background-image: url(../img/TickDown.svg);
+      background-repeat: no-repeat;
+    }
+
+    &-value {
+      &-disabled {
+        display: none;
+      }
+    }
+    &-tick-down {
+      margin-right: 20.36px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}

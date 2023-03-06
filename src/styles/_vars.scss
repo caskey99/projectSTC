@@ -1,0 +1,19 @@
+@mixin f400 {
+  font-family: "Inter-Regular", sans-serif;
+  font-weight: 400;
+}
+
+@mixin f500 {
+  font-family: "Inter-Medium", sans-serif;
+  font-weight: 500;
+}
+
+@mixin f600 {
+  font-family: "Inter-SemiBold", sans-serif;
+  font-weight: 600;
+}
+
+@mixin f700 {
+  font-family: "Inter-Bold", sans-serif;
+  font-weight: 700;
+}

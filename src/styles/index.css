@@ -1,0 +1,165 @@
+@import "../components/listUsers/ListUsers.css";
+@import "../components/BottomDocument/BottomDocument.css";
+@import "../components/chooseDocumentButton/Choosedocument.css";
+@import "../components/currentDocument/CurrentDocument.css";
+@import "../components/Messages/messages.css";
+@font-face {
+  font-family: "Inter-Regular", sans-serif;
+  src: url("./fonts/Inter-Regular400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter-Medium", sans-serif;
+  src: url("./fonts/Inter-Medium.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter-SemiBold", sans-serif;
+  src: url("./fonts/Inter-SemiBold600.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter-Bold", sans-serif;
+  src: url("./fonts/Inter-Bold.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+.message-field {
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter-SemiBold", sans-serif;
+  font-weight: 600;
+}
+.message-field .item-message {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  justify-content: space-between;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+.message-field .item-message:hover {
+  background: #E6F6F1;
+}
+.message-field .item-message-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(40, 43, 45, 0.6);
+  font-family: "Inter-Regular", sans-serif;
+  font-weight: 400;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+html,
+body {
+  width: 100%;
+  max-height: 100vh;
+}
+
+body {
+  font-size: 16px;
+  line-height: 24px;
+  overflow-x: hidden;
+  position: relative;
+  min-width: 320px;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+img,
+.img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+#root {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-width: 1280px;
+  flex-grow: 1;
+  max-height: 100vh;
+}
+
+.App {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: center;
+  max-height: 100vh;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  height: 100vh;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-height: 100vh;
+}
+
+.work-flow {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  max-height: 100vh;
+}
+
+.document-flow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #D9D9D9;
+  flex-grow: 1;
+}
+
+/*# sourceMappingURL=index.css.map */

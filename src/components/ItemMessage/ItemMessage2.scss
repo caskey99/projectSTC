@@ -1,0 +1,30 @@
+@import "../../styles/_vars.scss";
+
+
+.message-field {
+  display: flex;
+  flex-direction: column;
+  @include f600;
+
+  & .item-message {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    justify-content: space-between;
+    -webkit-user-select: none;
+    cursor: pointer;
+    &:hover {
+      background: #E6F6F1;
+    }
+    &-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 12px;
+      line-height: 16px;
+      color: rgba(40, 43, 45, 0.6);
+      font-family: "Inter-Regular", sans-serif;
+      font-weight: 400;
+    }
+  }
+}

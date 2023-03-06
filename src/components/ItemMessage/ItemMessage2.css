@@ -1,0 +1,29 @@
+.message-field {
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter-SemiBold", sans-serif;
+  font-weight: 600;
+}
+.message-field .item-message {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  justify-content: space-between;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+.message-field .item-message:hover {
+  background: #E6F6F1;
+}
+.message-field .item-message-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(40, 43, 45, 0.6);
+  font-family: "Inter-Regular", sans-serif;
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=ItemMessage2.css.map */

@@ -1,0 +1,156 @@
+.bottom-document {
+  background-color: white;
+  min-height: 56px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #C8CACC;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+
+  & .left-menu {
+    margin-left: 24px;
+    -webkit-user-select: none;
+  }
+  & .right-menu {
+    width: 444px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    -webkit-user-select: none;
+  }
+
+  & button {
+    width: 137px;
+    height: 32px;
+    background-color: #ebecec;
+    cursor: pointer;
+
+    &:hover {
+      cursor: pointer;
+      transition: 0.6s;
+    }
+  }
+
+  & .btn-send-true {
+    width: 140px;
+    background-color: #007562;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    & svg {
+      width: 20px;
+      height: 20px;
+      margin-left: 8px;
+    }
+    & span {
+      //font-size: 18px;
+      width: 88px;
+      height: 16px;
+    }
+
+    &:hover {
+      background-color: #005243;
+    }
+  }
+
+  & .btn-document {
+
+    &:hover {
+      background-color: #d2d2d2;
+    }
+
+    &:not(:hover) {
+      transition: 0.3s;
+    }
+  }
+
+  & .box-spinner {
+    border: 1px solid #cfd0d2;
+    width: 96px;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+    & .in-num {
+      width: 15px;
+      height: 18px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content:flex-end;
+    }
+
+    & .module-strip {
+      width: 20px;
+      height: 1px;
+      //position: absolute;
+      background-color: #cfd0d2;
+      transform: rotate(90deg);
+    }
+    & .module-minus {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #d2d2d2;
+        transition: 0.6s;
+      }
+
+      &:not(:hover) {
+        background-color: #FFFFFF;
+        transition: 0.3s;
+      }
+
+      & .minus {
+        position: absolute;
+        width: 10px;
+        height: 1px;
+        background-color: black;
+      }
+    }
+    & .module-plus{
+      width: 24px;
+      height: 24px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      margin-right: 4px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #d2d2d2;
+        transition: 0.6s;
+      }
+
+      &:not(:hover) {
+        transition: 0.3s;
+      }
+
+      &::before, &::after {
+        position: absolute;
+        content: "";
+        width: 10px;
+        height: 1px;
+        background-color: black;
+      }
+
+      &::before {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
