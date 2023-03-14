@@ -2,18 +2,22 @@ import React, {useEffect, useRef, useState} from "react";
 import ItemUser from "../itemUser/ItemUser";
 import { Buffer } from 'buffer';
 import img from "../img/gearWhee.svg";
+import {setNewUserIp} from "../../toolkitRedux/toolkitSlice";
+import {useDispatch} from "react-redux";
 
 
 const ListUser = ({isOpenedSettings, setState}) => {
-    const key = 'clients'
+    const dispatch = useDispatch();
+    let userIP = null;
+    const key = 'clients';
     const [update, setUpdate] = useState(true);
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
         const obj = JSON.parse(JSON.stringify(fileReader.result));
         const json = Buffer.from(obj.substring(29), "base64").toString();
         const result = JSON.parse(json);
-        sessionStorage.setItem(key, JSON.stringify(result))
-        setUpdate(false)
+        sessionStorage.setItem(key, JSON.stringify(result));
+        setUpdate(false);
     };
 
     fileReader.addEventListener('progress', (event) => { /* Процент загрузки json файла в console */
@@ -53,8 +57,8 @@ const ListUser = ({isOpenedSettings, setState}) => {
                 <div className="list-users-settings">
                     <div className="list-users-settings-window">
                         <span>IP</span>
-                        <input type="text" placeholder="Введите свой ip"/>
-                        <button>Сохранить</button>
+                        <input type="text" placeholder="Введите свой ip" onChange={(e) => {userIP = e.target.value}}/>
+                        <button onClick={(e) => {dispatch(setNewUserIp(userIP))}}>Сохранить</button>
                     </div>
                 </div>
                 :

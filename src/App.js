@@ -15,8 +15,6 @@ function App({}) {
     const [isOpenedSettings, setIsOpenedSettings] = useState(false);
     const [isOpened, setIsOpened] = useState(false);
 
-    const [curMessage, setCurMessage] = useState(null);
-
     function handleChangeOpened()  {
         setIsOpened((prevState) => {
             return prevState = true;
@@ -51,13 +49,13 @@ function App({}) {
                                 <div className="document-flow">
                                     {
                                         isOpened ?
-                                            <CurrentDocument OpenDoc={handleChangeClose} curMessage={curMessage} />
+                                            <CurrentDocument OpenDoc={handleChangeClose} />
                                             :
                                             <ChooseDocument OpenDoc={handleChangeOpened} />
                                     }
                                     <BottomDocument ws={ws} />
                                 </div>
-                                <Messages OpenDoc={handleChangeOpened} curMessage={setCurMessage} />
+                                <Messages OpenDoc={handleChangeOpened} />
                             </div>
                         </div>
                     </main>

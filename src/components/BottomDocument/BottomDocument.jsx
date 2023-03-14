@@ -3,18 +3,18 @@ import {useSelector} from "react-redux";
 import img from "../img/Vector.svg";
 
 const BottomDocument = ({ws}) => {
-    const userIp = useSelector(state => state.toolkit.userIp)
-    const valueDoc = useSelector(state => state.toolkit.valueDoc)
+    const userIp = useSelector(state => state.toolkit.userIp);
+    const valueDoc = useSelector(state => state.toolkit.valueDoc);
 
     const [counter, setCounter] = useState(1);
 
     const handleClickMinus = () => {
-        if(counter > 0)
-            setCounter(counter - 1)
+        if(counter > 0);
+            setCounter(counter - 1);
     }
     const handleClickPlus = () => {
-        if(counter < 100)
-            setCounter(counter + 1)
+        if(counter < 100);
+            setCounter(counter + 1);
     }
 
 

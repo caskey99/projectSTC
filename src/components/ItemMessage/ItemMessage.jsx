@@ -1,35 +1,32 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrentMessage} from "../../toolkitRedux/toolkitSlice";
 
 
-const ItemMessage = ({message, OpenDoc, curMessage}) => {
+const ItemMessage = ({message, OpenDoc}) => {
 
     const dispatch = useDispatch();
-    const currentMessage = useSelector(state => state.toolkit.currentMessage);
-
-    const  read = (currentMessage) => {
-        document.getElementById("message").value = currentMessage.message
-    }
+    let currentMessage = null;
 
     const openDocument = async () => {
         OpenDoc();
     }
 
-    const dispatchMessage = async () => {
-        dispatch(setCurrentMessage(message));
+    const dispatchMessage = async (message) => {
+        // dispatch(setCurrentMessage(message));
+        currentMessage = message;
     }
 
 
-
-
-    dispatch(setCurrentMessage(message))
+    const  read = (currentMessage) => {
+        document.getElementById("message").value = currentMessage.message;
+    }
 
     return (
         <div className='message-field'>
             <div className="item-message" onClick={() => {
                 openDocument().then(() => {
-                    dispatchMessage()
+                    dispatchMessage(message)
                         .then(() => {
                             read(currentMessage)
                         })

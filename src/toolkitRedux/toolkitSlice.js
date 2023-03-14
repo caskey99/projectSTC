@@ -4,6 +4,7 @@ const toolkitSlice = createSlice({
     name: "toolkit",
     initialState: {
         userIp: [],
+        newUserIp: [],
         valueDoc: '',
         valuesMsg: [],
         currentMessage: '',
@@ -11,7 +12,9 @@ const toolkitSlice = createSlice({
     reducers: {
         setUserIp(state, action){
             state.userIp.push(action.payload);
-
+        },
+        setNewUserIp(state, action){
+            state.newUserIp.push(action.payload);
         },
         setValueDoc(state, action){
             state.valueDoc = action.payload
@@ -20,10 +23,10 @@ const toolkitSlice = createSlice({
             state.valuesMsg.push(action.payload);
         },
         setCurrentMessage(state, action) {
-            state.currentMessage= action.payload;
+            state.currentMessage = action.payload;
         }
     }
 })
 
 export default toolkitSlice.reducer
-export const {setUserIp, setValueDoc, setValueMsg, setCurrentMessage} = toolkitSlice.actions
+export const {setUserIp, setNewUserIp, setValueDoc, setValueMsg, setCurrentMessage} = toolkitSlice.actions

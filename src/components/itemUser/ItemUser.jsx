@@ -3,7 +3,9 @@ import {useDispatch} from "react-redux";
 import {setUserIp} from "../../toolkitRedux/toolkitSlice";
 
 const ItemUser = ({data}) => {
-    const dispatch = useDispatch()
+
+    const dispatch = useDispatch();
+
     return (
         <div className="item-user">
             <input type="checkbox" id={data.ip} name="users" onClick={() => {dispatch(setUserIp(data.ip)) ; console.log(data.ip)}}/>

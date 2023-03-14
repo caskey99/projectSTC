@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 const os = require('os');
 
 
-const Messages = ({OpenDoc, curMessage}) => {
+const Messages = ({OpenDoc}) => {
 
     const valuesMsg = useSelector(state => state.toolkit.valuesMsg);
 
@@ -18,7 +18,7 @@ const Messages = ({OpenDoc, curMessage}) => {
                     ?
                         "пока пусто"
                     :
-                        valuesMsg.map(msg => <ItemMessage message={JSON.parse(msg)}  curMessage={curMessage} OpenDoc={OpenDoc} key={msg.id} />)
+                        valuesMsg.map(msg => <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />)
                 }
             </div>
         </aside>

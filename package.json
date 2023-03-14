@@ -28,7 +28,9 @@
     "build": "webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "npm run build && node server.js"
+    "go" : "npm run build && http-server",
+    "serve": "npm run build && node server.js",
+    "clean": "rd /s /q dist"
   },
   "eslintConfig": {
     "extends": [

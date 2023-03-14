@@ -8,6 +8,8 @@ const clients = {};
 const messages = [];
 var counter = 0;
 
+
+
 server.on('connection', function connection(ws, req) {
     clients[req.headers.origin] = ws
     console.log('зашел')

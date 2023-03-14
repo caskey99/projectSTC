@@ -14,11 +14,12 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, './dist'),
+    clean: true,
     filename: '[name].js'
   },
   watch: NODE_ENV === 'development',
   watchOptions: {
-    aggregateTimeout: 100,
+    // aggregateTimeout: 100,
     ignored: /node_modules/,
   },
 
@@ -50,6 +51,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             babelrc: true,
+            cacheDirectory: true
           },
         },
       },

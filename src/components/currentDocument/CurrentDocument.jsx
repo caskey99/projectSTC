@@ -4,7 +4,7 @@ import {setValueDoc} from "../../toolkitRedux/toolkitSlice";
 
 const CurrentDocument = ({OpenDoc }) => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     return (
         <div className="current-document">
