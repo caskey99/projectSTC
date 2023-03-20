@@ -73,6 +73,36 @@
 
   }
 
+  & .search-users {
+    margin-left: 3%;
+    & input {
+      outline: none;
+    }
+  }
+
+  & .file-input{
+    position: relative;
+    display: inline-block;
+
+    & input[type=file] {
+      cursor: pointer;
+    }
+    & input[type=file]:focus + span {
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+    /* Hover/active */
+    &:hover span {
+      background-color: #59be6e;
+    }
+    &:active span {
+      background-color: #2E703A;
+    }
+  }
+
+
+
+
   & .all-users {
     height: 50px;
     display: flex;
@@ -101,6 +131,7 @@
         transform: rotate(-45deg);
       }
     }
+
   }
 
   & .item-user {
@@ -207,3 +238,4 @@ label {
     border-color: #686D71
   }
 }
+

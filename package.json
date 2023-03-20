@@ -29,7 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "go" : "npm run build && http-server",
-    "serve": "npm run build && node server.js",
+    "server": "npm run build && node server.js",
     "clean": "rd /s /q dist"
   },
   "eslintConfig": {

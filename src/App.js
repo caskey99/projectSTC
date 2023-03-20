@@ -28,6 +28,14 @@ function App({}) {
 
     let ws = new WebsocketClient();
 
+    function createWebsocketClient(ip) {
+        // const ip = useSelector(state => state.toolkit.newUserIp);
+        // console.log("ip " + ip);
+        // ws.onClose();
+        // ws = ws.createWebsocketClient(ip)
+        // console.log(ws);
+    }
+
 
     ws.onOpen();
 
@@ -45,7 +53,7 @@ function App({}) {
                     <main className="main">
                         <div className="main-container">
                             <div className="work-flow">
-                                <ListUser isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} />
+                                <ListUser isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} createWebsocketClient={createWebsocketClient}/>
                                 <div className="document-flow">
                                     {
                                         isOpened ?

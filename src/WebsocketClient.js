@@ -16,9 +16,13 @@ export class WebsocketClient {
         return this.client;
     }
 
+    createWebsocketClient(ip) {
+        return new WebSocket(`ws://${ip}:9399`);
+    }
+
     onOpen() {
         this.client.onopen = () => {
-            console.log("privet");
+            console.log("privet" + this.client);
             const obj = {
                 method: "getMessage",
                 ipRecipient : '',

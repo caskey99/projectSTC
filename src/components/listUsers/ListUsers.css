@@ -63,6 +63,29 @@
   cursor: pointer;
   transition: 0.6s;
 }
+.list-users .search-users {
+  margin-left: 3%;
+}
+.list-users .search-users input {
+  outline: none;
+}
+.list-users .file-input {
+  position: relative;
+  display: inline-block;
+  /* Hover/active */
+}
+.list-users .file-input input[type=file] {
+  cursor: pointer;
+}
+.list-users .file-input input[type=file]:focus + span {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.list-users .file-input:hover span {
+  background-color: #59be6e;
+}
+.list-users .file-input:active span {
+  background-color: #2E703A;
+}
 .list-users .all-users {
   height: 50px;
   display: flex;
