@@ -7,72 +7,6 @@
   width: 304px;
   border-right: 1px solid #C8CACC;
 
-  &-settings {
-    width: 300px;
-    height: 60px;
-    border: solid 1px black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: absolute;
-    bottom: 56px;
-
-
-    &-button {
-      height: 32px;
-      width: 32px;
-      position: absolute;
-      left: 260px;
-      bottom: 12px;
-
-    }
-    &-window {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-
-      & span {
-        //width: 242px;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        margin-left: 12px;
-        align-items: center;
-        font-size: 14px;
-        @include f400;
-        -webkit-user-select: none;
-      }
-
-      & input {
-        height: 32px;
-        width: 125px;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        flex-grow: 1;
-        margin: 0 16px;
-        background: rgba(255, 255, 255, 0.12);
-        border: 1px solid #C8CACC;
-        padding-left: 12px;
-        outline: none;
-      }
-      & button {
-        width: 80px;
-        height: 32px;
-        margin-right: 12px;
-        background-color: #ebecec;
-        cursor: pointer;
-        -webkit-user-select: none;
-
-        &:hover {
-          cursor: pointer;
-          transition: 0.6s;
-        }
-      }
-    }
-
-  }
-
   & .search-users {
     margin-left: 3%;
     & input {
@@ -107,17 +41,24 @@
     height: 50px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     border-bottom: 1px solid  #C8CACC;
     -webkit-user-select: none;
     @include f600;
 
-    & label {
+    & h1 {
       font-style: normal;
       font-weight: 600;
       font-size: 15px;
-      line-height: 19px;
     }
+    //
+    //& label {
+    //  font-style: normal;
+    //  font-weight: 600;
+    //  font-size: 15px;
+    //  line-height: 19px;
+    //}
 
     input {
       &:checked+label:after {

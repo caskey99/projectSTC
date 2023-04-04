@@ -15,9 +15,7 @@ const ItemUser = ({data}) => {
                     <span className="job">{data.ip}</span>
                 </div>
             </label>
-            <div className="counter-cycle">
-
-            </div>
+            <div className="counter-cycle"></div>
         </div>
     )
 }

@@ -37,18 +37,19 @@ const ListUser = ({isOpenedSettings, setState, createWebsocketClient}) => {
     return (
         <aside className="list-users">
             <div className="all-users">
-                <input type="checkbox" id="users1" name="users"/>
-                <label htmlFor="users1">Пользователи</label>
+                {/*<input type="checkbox" id="users1" name="users"/>*/}
+                {/*<label htmlFor="users1">Пользователи</label>*/}
+                <h1>Пользователи</h1>
             </div>
 
-            <div className="search-users">
-                <form>
-                    <input type="search" aria-label="Search" placeholder="Искать здесь..."
-                       value={valueSearch.query}
-                       onChange={e => dispatch(setSearchVal({...valueSearch, query: e.target.value}))}
-                    />
-                </form>
-            </div>
+            {/*<div className="search-users">*/}
+            {/*    <form>*/}
+            {/*        <input type="search" aria-label="Search" placeholder="Искать здесь..."*/}
+            {/*           value={valueSearch.query}*/}
+            {/*           onChange={e => dispatch(setSearchVal({...valueSearch, query: e.target.value}))}*/}
+            {/*        />*/}
+            {/*    </form>*/}
+            {/*</div>*/}
 
             {sessionStorage.length === 0
                 ?
@@ -68,26 +69,6 @@ const ListUser = ({isOpenedSettings, setState, createWebsocketClient}) => {
                     (JSON.parse(sessionStorage.getItem(key))).map(element => <ItemUser key={element.ip} data={element}/>)
             }
 
-
-            {isOpenedSettings ?
-                <div className="list-users-settings">
-                    <div className="list-users-settings-window">
-                        <span>IP</span>
-                        <input type="text" placeholder="Введите свой ip" onChange={(e) => {userIP = e.target.value}}/>
-                        {/*<button onClick={(e) => {dispatch(setNewUserIp(userIP))}}>Сохранить</button>*/}
-                        <button onClick={(e) => {dispatch(setNewUserIp(userIP)); createWebsocketClient(userIP)}}>Сохранить</button>
-                    </div>
-                </div>
-                :
-                <div></div>
-            }
-            <div className="list-users-settings-button">
-                <a className="list-users-settings-button-gearWhee " onClick={() => {
-                    if (isOpenedSettings === false) setState(true); else setState(false)
-                }}>
-                    <img src={img} alt="Настройки IP"/>
-                </a>
-            </div>
         </aside>
     )
 }

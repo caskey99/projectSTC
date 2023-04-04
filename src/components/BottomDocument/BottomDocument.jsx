@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 import img from "../img/Vector.svg";
+import img_x from "../img/x.svg";
+import img_docs from "../img/docs.svg";
 
 const BottomDocument = ({ws}) => {
     const userIp = useSelector(state => state.toolkit.userIp);
@@ -39,9 +41,16 @@ const BottomDocument = ({ws}) => {
     return (
         <div className="bottom-document">
             <div className="left-menu">
-                <button className='btn-document'>Документы</button>
+                <button className='btn-send-true' onClick={() => {sendMsg(userIp, valueDoc)}}>
+                                         <span>
+                                            Отправить
+                                         </span>
+                    <img src={img} alt="Отправка документа"/>
+                </button>
+                {/*<button className='btn-document'>Документы</button>*/}
             </div>
             <div className="right-menu">
+                <img src={img_docs}  width="14" height="14"  />
                 <p>Колличесвто отправок</p>
                 <div className='box-spinner'>
                     <div className='in-num'> {counter}</div>
@@ -53,13 +62,6 @@ const BottomDocument = ({ws}) => {
                         <div className="plus"/>
                     </div>
                 </div>
-                {/*<button disabled className='btn-send'>Отправить</button>*/}
-                <button className='btn-send-true' onClick={() => {sendMsg(userIp, valueDoc)}}>
-                                         <span>
-                                            Отправить
-                                         </span>
-                    <img src={img} alt="Отправка документа"/>
-                </button>
             </div>
         </div>
     )

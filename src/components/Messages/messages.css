@@ -2,24 +2,92 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 304px;
   border-right: 1px solid #C8CACC;
   overflow-y: scroll;
 }
 .messages-list-header {
-  min-height: 50px;
+  width: 100%;
+  height: 48px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  font-family: "Inter-SemiBold", sans-serif;
   border-bottom: 1px solid #C8CACC;
   -webkit-user-select: none;
   font-family: "Inter-SemiBold", sans-serif;
   font-weight: 600;
 }
-.messages-list-items {
+.messages-list-header-items {
   display: flex;
   flex-direction: column-reverse;
+  max-height: 50%;
+}
+.messages-list-buttons-switching {
+  width: 100%;
+  display: flex;
+}
+.messages-list-buttons-switching button {
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: "Inter-SemiBold", sans-serif;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 48px;
+  background-color: #FFFFFF;
+  color: #007562;
+  transition: 0.4s;
+}
+.messages-list-buttons-switching button .counter-cycle {
+  width: 16px;
+  height: 16px;
+  background-color: #38A88F;
+  color: rgba(252, 252, 253, 0.92);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+.messages-list-search {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #C8CACC;
+}
+.messages-list-search-img-search {
+  position: absolute;
+  margin-left: 9px;
+  padding-top: 10px;
+}
+.messages-list-search-img-filter {
+  margin-left: 26px;
+}
+.messages-list-search form {
+  height: 32px;
+  width: 100%;
+  margin-left: 22px;
+  margin-right: 22px;
+  background-color: #F4F5F5;
+}
+.messages-list-search form input {
+  height: 32px;
+  width: 80%;
+  padding-left: 31px;
+  padding-right: 12px;
+  color: #282B2D;
+  background-color: #F4F5F5;
+  background-repeat: no-repeat;
 }
 
 /*# sourceMappingURL=messages.css.map */

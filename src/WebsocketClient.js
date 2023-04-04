@@ -33,7 +33,7 @@ export class WebsocketClient {
                 timestamp: '',
             }
             this.client.send(JSON.stringify(obj));
-        }
+                    }
     }
 
     onMessage() {

@@ -14,15 +14,15 @@ server.on('connection', function connection(ws, req) {
     ws.on('message', msg => {
         msg = JSON.parse(msg)
         const ip = req.socket.remoteAddress.replace(/^.*:/, '');
-        console.log("ip"+ ip)
+        // console.log("ip"+ ip)
         msg.ipCurr = ip
         switch (msg.method) {
             case "sendMessage":
-                console.log('sendMessage')
+                // console.log('sendMessage')
                 sendMsgToIp(ws, req, msg)
                 break
             case "getMessage":
-                console.log('getMessage')
+                // console.log('getMessage')
                 getMsgToIp(ws, req)
                 break
             default :
@@ -34,7 +34,7 @@ server.on('connection', function connection(ws, req) {
 
 const sendMsgToIp = (ws, req, msg) => {
     const ip = req.socket.remoteAddress.replace(/^.*:/, '');
-    msg.ipSender = ip
+    // msg.ipSender = ip
     msg.ipRecipient.map(
         ip => {
             const wss = clients[`http://${ip}:8080`];
@@ -44,6 +44,8 @@ const sendMsgToIp = (ws, req, msg) => {
             counter++;
         }
     )
+    console.log('sendMsgToIp')
+    console.log('ipRecipient:' + msg.ipRecipient)
 }
 
 const getMsgToIp = (ws, req) => {
