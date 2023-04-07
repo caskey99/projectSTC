@@ -16,13 +16,22 @@ export class WebsocketClient {
         return this.client;
     }
 
+    getWebsocketClientIp = (callback) => {
+        this.client.addEventListener('open', (event) => {
+            const ip = event.target.url.match(/\d+\.\d+\.\d+\.\d+/)[0];
+            if(ip) {
+                callback(ip);
+            }
+        });
+    }
+
     createWebsocketClient(ip) {
         return new WebSocket(`ws://${ip}:9399`);
     }
 
     onOpen() {
         this.client.onopen = () => {
-            console.log("privet" + this.client);
+            console.log("privet");
             const obj = {
                 method: "getMessage",
                 ipRecipient : '',
@@ -33,7 +42,7 @@ export class WebsocketClient {
                 timestamp: '',
             }
             this.client.send(JSON.stringify(obj));
-                    }
+        }
     }
 
     onMessage() {

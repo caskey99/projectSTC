@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import img from "../img/Vector.svg";
 import img_x from "../img/x.svg";
 import img_docs from "../img/docs.svg";
+import {setClientIP} from "../../toolkitRedux/toolkitSlice";
 
 const BottomDocument = ({ws}) => {
+    const dispatch = useDispatch();
     const userIp = useSelector(state => state.toolkit.userIp);
     const valueDoc = useSelector(state => state.toolkit.valueDoc);
+    const clientIp = useSelector(state => state.toolkit.clientIP);
 
     const [counter, setCounter] = useState(1);
 
@@ -19,6 +22,10 @@ const BottomDocument = ({ws}) => {
             setCounter(counter + 1);
     }
 
+    ws.getWebsocketClientIp((ipAddress) => {
+        dispatch(setClientIP(ipAddress));
+    });
+
 
     const sendMsg = (userIp, valueDoc) => {
         const date = new Date();
@@ -29,7 +36,7 @@ const BottomDocument = ({ws}) => {
         const obj = {
             method: "sendMessage",
             ipRecipient : userIp,
-            ipSender: '',
+            ipSender: clientIp,
             ipCurr: '',
             id: '',
             message: valueDoc,

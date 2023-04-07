@@ -34,25 +34,31 @@ server.on('connection', function connection(ws, req) {
 
 const sendMsgToIp = (ws, req, msg) => {
     const ip = req.socket.remoteAddress.replace(/^.*:/, '');
-    // msg.ipSender = ip
-    msg.ipRecipient.map(
-        ip => {
-            const wss = clients[`http://${ip}:8080`];
-            msg.id = counter;
-            wss?.send(JSON.stringify(msg));
-            messages[counter] = msg;
-            counter++;
-        }
-    )
+    const wss = clients[`http://${ip}:8080`];
+    msg.id = counter;
+    wss?.send(JSON.stringify(msg));
+    messages[counter] = msg;
+    counter++;
+
+    // msg.ipRecipient.map(
+    //     ip => {
+    //         const wss = clients[`http://${ip}:8080`];
+    //         msg.id = counter;
+    //         wss?.send(JSON.stringify(msg));
+    //         messages[counter] = msg;
+    //         counter++;
+    //     }
+    // )
     console.log('sendMsgToIp')
     console.log('ipRecipient:' + msg.ipRecipient)
+    console.log('ipSender:' + msg.ipSender)
 }
 
 const getMsgToIp = (ws, req) => {
     if(messages.length) {
         messages.map(msg =>console.log(msg));
         const ip = req.socket.remoteAddress.replace(/^.*:/, '')
-        const msgToIp = messages.filter(msg => msg.ipRecipient[0] === ip);
+        const msgToIp = messages.filter(msg => (msg.ipRecipient === ip || msg.ipSender === ip))
         const wss = clients[`http://${ip}:8080`];
         msgToIp.map(msg => wss?.send(JSON.stringify(msg)));
         msgToIp.map(msg => console.log(msg));

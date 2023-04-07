@@ -45,7 +45,6 @@ function App({}) {
 
     ws.onError();
 
-
     return (
         <>
             <div className="App">

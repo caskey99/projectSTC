@@ -63,7 +63,7 @@
   -webkit-user-select: none;
 }
 .list-users .item-user:hover {
-  background: #E6F6F1;
+  background: #EBECEC;
 }
 .list-users .item-user .title-user {
   display: flex;
@@ -100,6 +100,36 @@
   align-items: center;
   text-align: center;
   letter-spacing: 0.02em;
+}
+.list-users .item-user-options {
+  position: absolute;
+  top: 13px;
+  left: 255px;
+  width: 232px;
+  height: 120px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  z-index: 100;
+  display: flex;
+  box-shadow: 0 1px 2px 0 #ccc, 1px 2px 4px 0 #ccc, 2px 4px 8px 0 #ccc, 2px 4px 16px 0 #ccc;
+}
+.list-users .item-user-options ul {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.list-users .item-user-options ul li {
+  width: 100%;
+  padding-top: 6px;
+  cursor: pointer;
+  padding-left: 10px;
+  font-family: Inter-Regular, serif;
+}
+.list-users .item-user-options ul li:hover {
+  background-color: #EBECEC;
+}
+.list-users .wrapper {
+  position: absolute;
 }
 
 input[type=checkbox] {

@@ -3,6 +3,7 @@
 @import "../components/chooseDocumentButton/Choosedocument.css";
 @import "../components/currentDocument/CurrentDocument.css";
 @import "../components/Messages/messages.css";
+@import "../components/ItemMessage/ItemMessage.css";
 @font-face {
   font-family: "Inter-Regular", sans-serif;
   src: url("./fonts/Inter-Regular400.woff2") format("woff2");
@@ -27,56 +28,6 @@
   font-weight: 400;
   font-display: swap;
 }
-.message-field {
-  display: flex;
-  flex-direction: column;
-  font-family: "Inter-SemiBold", sans-serif;
-  font-weight: 600;
-}
-.message-field .item-message {
-  height: 64px;
-  display: flex;
-  padding: 15px;
-  justify-content: space-evenly;
-  -webkit-user-select: none;
-  cursor: pointer;
-  align-content: space-around;
-  flex-wrap: wrap;
-  flex-direction: column-reverse;
-}
-.message-field .item-message:hover {
-  background: #E6F6F1;
-  position: relative;
-}
-.message-field .item-message-info {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-.message-field .item-message-info-time {
-  font-size: 12px;
-  line-height: 16px;
-  color: rgba(40, 43, 45, 0.6);
-  font-family: "Inter-Regular", sans-serif;
-}
-.message-field .item-message-info-content {
-  font-family: "Inter-Regular", sans-serif;
-  font-weight: 400;
-}
-.message-field .item-message-info-img-msg {
-  display: block;
-}
-.message-field .item-message-info-img-msg:hover {
-  display: none;
-}
-.message-field .item-message-info-img-download {
-  display: none;
-}
-.message-field .item-message-info-img-download:hover {
-  display: block;
-}
-
 html {
   box-sizing: border-box;
 }

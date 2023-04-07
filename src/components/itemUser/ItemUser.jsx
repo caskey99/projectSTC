@@ -1,10 +1,27 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch} from "react-redux";
 import {setUserIp} from "../../toolkitRedux/toolkitSlice";
+import ItemUserOptions from "../itemUserOptions/ItemUserOptions";
 
 const ItemUser = ({data}) => {
 
     const dispatch = useDispatch();
+    const dropdownRef = useRef()
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+            if (isMenuOpen && dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setIsMenuOpen(false)
+            }
+        }
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+            document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [isMenuOpen])
 
     return (
         <div className="item-user">
@@ -15,7 +32,18 @@ const ItemUser = ({data}) => {
                     <span className="job">{data.ip}</span>
                 </div>
             </label>
-            <div className="counter-cycle"></div>
+            <div className="counter-cycle" onClick={() => setIsMenuOpen(oldState => !oldState)}></div>
+            <div className="wrapper" ref={dropdownRef}>
+                {isMenuOpen && (
+                    <ItemUserOptions >
+                        <ul className="item-list">
+                            <li className="list-item"><p>Открыть папку с документами</p></li>
+                            <li className="list-item">Редактировать данные</li>
+                            <li className="list-item">Удалить пользователя</li>
+                        </ul>
+                    </ItemUserOptions>
+                )}
+            </div>
         </div>
     )
 }

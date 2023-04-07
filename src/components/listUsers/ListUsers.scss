@@ -82,10 +82,10 @@
     justify-content: space-between;
     align-items: center;
     -webkit-user-select: none;
-
+    //background: #E6F6F1;
 
     &:hover {
-      background: #E6F6F1;
+      background: #EBECEC;
     }
 
     & .title-user {
@@ -128,6 +128,44 @@
       text-align: center;
       letter-spacing: 0.02em;
     }
+  }
+  & .item-user-options {
+    position: absolute;
+    top: 13px;
+    left: 255px;
+    width: 232px;
+    height: 120px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 100;
+    display: flex;
+    box-shadow: 0 1px 2px 0 #ccc,
+    1px 2px 4px 0 #ccc,
+    2px 4px 8px 0 #ccc,
+    2px 4px 16px 0 #ccc;
+
+
+    & ul {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+
+      & li {
+        width: 100%;
+        padding-top: 6px;
+        cursor: pointer;
+        padding-left: 10px;
+        font-family: Inter-Regular, serif;
+
+        &:hover{
+          background-color: #EBECEC;
+        }
+      }
+    }
+  }
+
+  & .wrapper {
+    position: absolute;
   }
 }
 

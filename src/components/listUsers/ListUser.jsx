@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import ItemUser from "../itemUser/ItemUser";
+import ItemUserOptions from "../itemUserOptions/ItemUserOptions";
 import { Buffer } from 'buffer';
 import img from "../img/gearWhee.svg";
 import {setNewUserIp, setSearchVal} from "../../toolkitRedux/toolkitSlice";
@@ -34,6 +35,7 @@ const ListUser = ({isOpenedSettings, setState, createWebsocketClient}) => {
         fileReader.readAsDataURL(clients2);
     }
 
+
     return (
         <aside className="list-users">
             <div className="all-users">
@@ -54,11 +56,11 @@ const ListUser = ({isOpenedSettings, setState, createWebsocketClient}) => {
             {sessionStorage.length === 0
                 ?
                 (<div className="file-input">
-                    <input type="file"
-                           className="file"
-                           onChange={handleOnChange}
-                           accept=".json"/>
-                </div>
+                        <input type="file"
+                               className="file"
+                               onChange={handleOnChange}
+                               accept=".json"/>
+                    </div>
                 )
                 :
                 valueSearch.query
@@ -66,7 +68,11 @@ const ListUser = ({isOpenedSettings, setState, createWebsocketClient}) => {
                     (JSON.parse(sessionStorage.getItem(key))).filter(element => element.name.toLowerCase().includes(valueSearch.query.toLowerCase()))
                         .map(element => <ItemUser key={element.ip} data={element}/>)
                     :
-                    (JSON.parse(sessionStorage.getItem(key))).map(element => <ItemUser key={element.ip} data={element}/>)
+                    (JSON.parse(sessionStorage.getItem(key))).map(element =>
+                        (
+                                <ItemUser key={element.ip} data={element} />
+                        )
+                    )
             }
 
         </aside>

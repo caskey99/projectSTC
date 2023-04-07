@@ -3,8 +3,9 @@ import {createSlice} from "@reduxjs/toolkit";
 const toolkitSlice = createSlice({
     name: "toolkit",
     initialState: {
-        userIp: [],
+        userIp: '',
         newUserIp: '',
+        clientIP: '',
         valueDoc: '',
         valuesMsg: [],
         currentMessage: '',
@@ -12,10 +13,13 @@ const toolkitSlice = createSlice({
     },
     reducers: {
         setUserIp(state, action){
-            state.userIp.push(action.payload);
+            state.userIp = action.payload;
         },
         setNewUserIp(state, action){
             state.newUserIp = action.payload;
+        },
+        setClientIP(state, action){
+            state.clientIP = action.payload;
         },
         setValueDoc(state, action){
             state.valueDoc = action.payload
@@ -33,4 +37,4 @@ const toolkitSlice = createSlice({
 })
 
 export default toolkitSlice.reducer
-export const {setUserIp, setNewUserIp, setValueDoc, setValueMsg, setCurrentMessage, setSearchVal} = toolkitSlice.actions
+export const {setUserIp, setNewUserIp, setClientIP, setValueDoc, setValueMsg, setCurrentMessage, setSearchVal} = toolkitSlice.actions

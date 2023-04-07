@@ -51,8 +51,9 @@ const ItemMessage = ({message, OpenDoc}) => {
                     </div>
                 </div>
 
-                <img  className="item-message-info-img-msg" src={img_msg} width="16" height="13" />
-                <img  className="item-message-info-img-download" src={img_download} width="14" height="17" />
+                {/*<img  className="item-message-info-img-msg" src={img_msg} width="16" height="13" />*/}
+                <div className="item-message-info-img-msg" ></div>
+                {/*<img  className="item-message-info-img-download" src={img_download} width="14" height="17" />*/}
 
             </div>
         </div>

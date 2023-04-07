@@ -41,6 +41,7 @@
   background-color: #FFFFFF;
   color: #007562;
   transition: 0.4s;
+  cursor: pointer;
 }
 .messages-list-buttons-switching button .counter-cycle {
   width: 16px;
