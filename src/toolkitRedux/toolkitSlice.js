@@ -9,7 +9,8 @@ const toolkitSlice = createSlice({
         valueDoc: '',
         valuesMsg: [],
         currentMessage: '',
-        searchVal: {query:''},
+        // searchVal: {query1:''},
+        searchUser: {query:''},
     },
     reducers: {
         setUserIp(state, action){
@@ -30,11 +31,16 @@ const toolkitSlice = createSlice({
         setCurrentMessage(state, action) {
             state.currentMessage = action.payload;
         },
-        setSearchVal(state, action){
-            state.searchVal = action.payload;
+        // setSearchVal(state, action){
+        //     state.searchVal = action.payload;
+        //     console.log(action.payload)
+        // },
+        setSearchUser(state, action){
+            state.searchUser = action.payload;
+            console.log(action.payload)
         }
     }
 })
 
 export default toolkitSlice.reducer
-export const {setUserIp, setNewUserIp, setClientIP, setValueDoc, setValueMsg, setCurrentMessage, setSearchVal} = toolkitSlice.actions
+export const {setUserIp, setNewUserIp, setClientIP, setValueDoc, setValueMsg, setCurrentMessage, setSearchUser} = toolkitSlice.actions

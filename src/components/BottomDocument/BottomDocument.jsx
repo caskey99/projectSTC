@@ -33,12 +33,18 @@ const BottomDocument = ({ws}) => {
         const minutes = date.getMinutes();
         const time = hour + ":" + minutes;
         console.log(time);
+        const currClient = JSON.parse(sessionStorage.getItem("clients")).filter(element => element.ip === clientIp);
+        let nameClient = "noName";
+        if (currClient.length === 1)
+            nameClient = currClient[0].name
+
         const obj = {
             method: "sendMessage",
             ipRecipient : userIp,
             ipSender: clientIp,
             ipCurr: '',
             id: '',
+            nameSender: nameClient,
             message: valueDoc,
             timestamp: time,
         }
