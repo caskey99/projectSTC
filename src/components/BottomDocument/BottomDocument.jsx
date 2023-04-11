@@ -46,6 +46,7 @@ const BottomDocument = ({ws}) => {
             id: '',
             nameSender: nameClient,
             message: valueDoc,
+            date: date,
             timestamp: time,
         }
         ws.getWebsocketClient().send(JSON.stringify(obj));

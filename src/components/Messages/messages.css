@@ -41,7 +41,6 @@
   background-color: #FFFFFF;
   color: #007562;
   transition: 0.4s;
-  cursor: pointer;
 }
 .messages-list-buttons-switching button .counter-cycle {
   width: 16px;
@@ -62,9 +61,14 @@
   width: 100%;
   height: 48px;
   display: flex;
-  justify-content: space-around;
+  flex-wrap: nowrap;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   border-bottom: 1px solid #C8CACC;
+}
+.messages-list-search form {
+  display: flex;
 }
 .messages-list-search-img-search {
   position: absolute;
@@ -72,18 +76,47 @@
   padding-top: 10px;
 }
 .messages-list-search-img-filter {
-  margin-left: 26px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.messages-list-search-img-filter img {
+  width: 18px;
+  height: 12px;
+}
+.messages-list-search-filter-box {
+  width: 100%;
+  height: 48px;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid #C8CACC;
+  -webkit-user-select: none;
+}
+.messages-list-search-filter-box-item {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.messages-list-search-filter-box-item:hover {
+  background-color: #EBECEC;
 }
 .messages-list-search form {
   height: 32px;
-  width: 100%;
+  width: 288px;
   margin-left: 22px;
   margin-right: 22px;
   background-color: #F4F5F5;
 }
 .messages-list-search form input {
   height: 32px;
-  width: 80%;
+  width: 86%;
   padding-left: 31px;
   padding-right: 12px;
   color: #282B2D;

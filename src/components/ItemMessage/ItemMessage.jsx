@@ -27,6 +27,24 @@ const ItemMessage = ({message, OpenDoc}) => {
     }
     console.log(JSON.stringify(message))
 
+    const formatMessageTime = (timestamp) => {
+        const currentDate = new Date() ;
+        const messageDate = new Date(timestamp);
+
+        //const date1 = new Date('2023-04-09T00:00:00.000Z');
+        const sameYear = currentDate.getFullYear() === messageDate.getFullYear();
+        const sameMonth = currentDate.getMonth() === messageDate.getMonth();
+        const sameDay = currentDate.getDate() === messageDate.getDate();
+
+        if (sameYear && sameMonth && sameDay) {
+            return `Сегодня ${messageDate.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+        } else if (sameYear && sameMonth && currentDate.getDate() - messageDate.getDate() === 1) {
+            return `Вчера ${messageDate.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+        } else {
+            return `${messageDate.getDate()} ${messageDate.toLocaleString('ru-RU', { month: 'long' })} в ${messageDate.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+        }
+    }
+
     return (
         <div className='message-field'>
             <div className="item-message" onClick={() => {
@@ -47,7 +65,7 @@ const ItemMessage = ({message, OpenDoc}) => {
                         <span>{message.message}</span>
                     </div>
                     <div className="item-message-info-time">
-                        <span>{message.timestamp}</span>
+                        <span>{formatMessageTime(message.date)}</span>
                     </div>
                 </div>
 
