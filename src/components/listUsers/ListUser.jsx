@@ -53,7 +53,7 @@ const ListUser = ({isOpenedSettings, setState, createWebsocketClient}) => {
             {/*    </form>*/}
             {/*</div>*/}
 
-            {sessionStorage.length === 0
+            {sessionStorage.getItem(key) === null
                 ?
                 (<div className="file-input">
                         <input type="file"
