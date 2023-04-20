@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 const os = require('os');
 import img_search from "../img/search.svg";
 import img_filter from "../img/filter.svg";
-import {setClientIP, setSearchUser, setUserIp} from "../../toolkitRedux/toolkitSlice";
+import {setClientIP, setSearchUser, setUserIp, setValueMsg} from "../../toolkitRedux/toolkitSlice";
 
 
 const Messages = ({OpenDoc, ws}) => {
@@ -19,6 +19,25 @@ const Messages = ({OpenDoc, ws}) => {
     const [isOpenFilter, setIsOpenFilter] = useState(false);
     const [sortByTime, setSortByTime] = useState(false);
 
+    const drawMessages = (valuesMsgArr) => {
+        const res = []
+        if(swap) {
+            valuesMsgArr.map(msg => {
+                if (JSON.parse(msg).ipRecipient !== clientIp) {
+                    res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={JSON.parse(msg).id}/>)
+                }
+            });
+        }
+        else {
+            valuesMsgArr.map(msg => {
+                if (JSON.parse(msg).ipRecipient === clientIp) {
+                    res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={JSON.parse(msg).id}/>)
+                }
+            });
+        }
+
+        return res;
+    }
 
     function handleChangeIncoming()  {
         setSwap(false);
@@ -98,39 +117,17 @@ const Messages = ({OpenDoc, ws}) => {
                                             ?
                                             valueUsers.query
                                                 ?
-                                                [...valuesMsg].reverse().filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())).map(msg =>
-                                                    {
-                                                        if (JSON.parse(msg).ipRecipient !== clientIp) {
-                                                            return <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />
-                                                        }
-                                                    }
-                                                )
+                                                drawMessages([...valuesMsg].reverse().filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
                                                 :
-                                                [...valuesMsg].reverse().map(msg =>
-                                                {
-                                                    if (JSON.parse(msg).ipRecipient !== clientIp) {
-                                                        return <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />
-                                                    }
-                                                })
+                                                drawMessages( [...valuesMsg].reverse())
                                             :
 
                                             valueUsers.query
                                                 ?
-                                                valuesMsg.filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())).map(msg =>
-                                                    {
-                                                        if (JSON.parse(msg).ipRecipient !== clientIp) {
-                                                            return <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />
-                                                        }
-                                                    }
-                                                )
+                                                drawMessages([...valuesMsg].filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
                                                 :
-                                                valuesMsg.map(msg =>
-                                                    {
-                                                        if (JSON.parse(msg).ipRecipient !== clientIp) {
-                                                            return <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />
-                                                        }
-                                                    }
-                                                )
+                                                drawMessages([...valuesMsg])
+
 
                                         // valuesMsg.map(msg => console.log(msg))
                                         //valuesMsg.map(msg => <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />)
@@ -154,39 +151,16 @@ const Messages = ({OpenDoc, ws}) => {
                                             ?
                                             valueUsers.query
                                                 ?
-                                                [...valuesMsg].reverse().filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())).map(msg =>
-                                                    {
-                                                        if (JSON.parse(msg).ipRecipient === clientIp) {
-                                                            return <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />
-                                                        }
-                                                    }
-                                                )
+                                                drawMessages([...valuesMsg].reverse().filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
                                                 :
-                                                [...valuesMsg].reverse().map(msg =>
-                                                {
-                                                    if (JSON.parse(msg).ipRecipient === clientIp) {
-                                                        return <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />
-                                                    }
-                                                })
+                                                drawMessages( [...valuesMsg].reverse())
                                             :
 
                                             valueUsers.query
                                                 ?
-                                                valuesMsg.filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())).map(msg =>
-                                                    {
-                                                        if (JSON.parse(msg).ipRecipient === clientIp) {
-                                                            return <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />
-                                                        }
-                                                    }
-                                                )
+                                                drawMessages([...valuesMsg].filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
                                                 :
-                                                valuesMsg.map(msg =>
-                                                    {
-                                                        if (JSON.parse(msg).ipRecipient === clientIp) {
-                                                            return <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />
-                                                        }
-                                                    }
-                                                )
+                                                drawMessages([...valuesMsg])
 
                                         // <ItemMessage message={JSON.parse("{\"method\":\"sendMessage\",\"ipRecipient\":[\"192.168.31.14\"],\"ipSender\":\"\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"message\":\"Донесение на РБ-108С\",\"timestamp\":\"13:59\"}")}/>
 
