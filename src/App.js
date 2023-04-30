@@ -4,7 +4,7 @@ import BottomDocument from "./components/BottomDocument/BottomDocument";
 import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
 import CurrentDocument from "./components/currentDocument/CurrentDocument";
 import ListUser from "./components/listUsers/ListUser";
-import Messages from "./components/Messages/Messages";
+import Messages from "./components/listMessages/listMessages";
 import {useDispatch, useSelector} from "react-redux";
 import {setValueMsg} from "./toolkitRedux/toolkitSlice";
 import {WebsocketClient} from "./WebsocketClient";
@@ -16,11 +16,13 @@ function App({}) {
     const [isOpened, setIsOpened] = useState(false);
 
     function handleChangeOpened()  {
+        console.log("handleChangeOpened")
         setIsOpened((prevState) => {
             return prevState = true;
         })
     }
     function handleChangeClose() {
+        console.log("handleChangeClose")
         setIsOpened((prevState) => {
             return prevState = false;
         })
@@ -52,7 +54,7 @@ function App({}) {
                     <main className="main">
                         <div className="main-container">
                             <div className="work-flow">
-                                <ListUser isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} createWebsocketClient={createWebsocketClient}/>
+                                <ListUser openDoc={handleChangeOpened} closeDoc={handleChangeClose} isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} createWebsocketClient={createWebsocketClient}/>
                                 <div className="document-flow">
                                     {
                                         isOpened ?
@@ -74,3 +76,6 @@ function App({}) {
 }
 
 export default App;
+
+// <div className="current-document" dangerouslySetInnerHTML={ { __html: document.ui  } }>
+// const document = useSelector(state => state.toolkit.document);

@@ -38,6 +38,16 @@ const BottomDocument = ({ws}) => {
         if (currClient.length === 1)
             nameClient = currClient[0].name
 
+        const msg = {
+            "blank": {
+                "value": null
+            },
+            "name": "text",
+            "type": "text",
+            "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<skif-document id='skif.other.text' name='Текст'>\n    <skif-text-area id='value' name='Ввод'></skif-text-area>\n</skif-document>\n</body>\n</html>\n"
+        }
+
+
         const obj = {
             method: "sendMessage",
             ipRecipient : userIp,
@@ -46,6 +56,7 @@ const BottomDocument = ({ws}) => {
             id: '',
             nameSender: nameClient,
             message: valueDoc,
+            body: msg,
             date: date,
             timestamp: time,
         }

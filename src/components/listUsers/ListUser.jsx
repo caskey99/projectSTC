@@ -7,9 +7,8 @@ import {setNewUserIp, setSearchVal} from "../../toolkitRedux/toolkitSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 
-const ListUser = ({isOpenedSettings, setState, createWebsocketClient}) => {
+const ListUser = ({openDoc, closeDoc, isOpenedSettings, setState, createWebsocketClient}) => {
     const dispatch = useDispatch();
-    // const valueSearch = useSelector(state => state.toolkit.searchVal);
     let userIP = null;
     const key = 'clients';
     const [update, setUpdate] = useState(true);
@@ -39,19 +38,8 @@ const ListUser = ({isOpenedSettings, setState, createWebsocketClient}) => {
     return (
         <aside className="list-users">
             <div className="all-users">
-                {/*<input type="checkbox" id="users1" name="users"/>*/}
-                {/*<label htmlFor="users1">Пользователи</label>*/}
                 <h1>Пользователи</h1>
             </div>
-
-            {/*<div className="search-users">*/}
-            {/*    <form>*/}
-            {/*        <input type="search" aria-label="Search" placeholder="Искать здесь..."*/}
-            {/*           value={valueSearch.query1}*/}
-            {/*           onChange={e => dispatch(setSearchVal({...valueSearch, query1: e.target.value}))}*/}
-            {/*        />*/}
-            {/*    </form>*/}
-            {/*</div>*/}
 
             {sessionStorage.getItem(key) === null
                 ?
@@ -63,14 +51,9 @@ const ListUser = ({isOpenedSettings, setState, createWebsocketClient}) => {
                     </div>
                 )
                 :
-                // valueSearch.query1
-                //     ?
-                //     (JSON.parse(sessionStorage.getItem(key))).filter(element => element.name.toLowerCase().includes(valueSearch.query.toLowerCase()))
-                //         .map(element => <ItemUser key={element.ip} data={element}/>)
-                //     :
                     (JSON.parse(sessionStorage.getItem(key))).map(element =>
                         (
-                                <ItemUser key={element.ip} data={element} />
+                                <ItemUser openDoc={openDoc} closeDoc={closeDoc} key={element.ip} data={element} />
                         )
                     )
             }

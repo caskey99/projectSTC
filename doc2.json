@@ -1,0 +1,12 @@
+{
+    "blank": {
+      "signature": {
+        "name": null,
+        "post": null
+      },
+      "time": null
+    },
+    "name": "Запрос",
+    "type": "signature",
+     "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<div class='current-document-title'><h3>Приказ о перевозке №9</h3></div>\n<div class='current-document-container'>\n<div class='current-document-container-identity'><span>идентификатор распоряжения</span>  <input type=\"text\" id=\"message\" placeholder=\"Placeholder\"></input></div>\n</div>\n</body>\n</html>\n"
+}

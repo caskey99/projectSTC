@@ -25,7 +25,7 @@ const ItemMessage = ({message, OpenDoc}) => {
     const  read = (currentMessage) => {
         document.getElementById("message").value = currentMessage.message;
     }
-    console.log(JSON.stringify(message))
+    // console.log(JSON.stringify(message))
 
     const formatMessageTime = (timestamp) => {
         const currentDate = new Date() ;

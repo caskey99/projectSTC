@@ -1,0 +1,12 @@
+{
+    "blank": {
+      "signature": {
+        "name": null,
+        "post": null
+      },
+      "time": null
+    },
+    "name": "Запрос",
+    "type": "signature",
+    "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<skif-document id='signature' name='Запрос'>\n    <skif-group id='signature' name='Подпись'>\n        <skif-text-line id='post' name='Должность' required='true'></skif-text-line>\n        <skif-text-line id='name' name='ФИО' required='true'></skif-text-line>\n    </skif-group>\n    <skif-date-time id='time' name='Время' type='time'></skif-date-time>\n</skif-document>\n</body>\n</html>\n"
+}

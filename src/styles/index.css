@@ -2,7 +2,7 @@
 @import "../components/BottomDocument/BottomDocument.css";
 @import "../components/chooseDocumentButton/Choosedocument.css";
 @import "../components/currentDocument/CurrentDocument.css";
-@import "../components/Messages/messages.css";
+@import "../components/listMessages/messages.css";
 @import "../components/ItemMessage/ItemMessage.css";
 @font-face {
   font-family: "Inter-Regular", sans-serif;

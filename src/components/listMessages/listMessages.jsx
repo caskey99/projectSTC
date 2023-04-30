@@ -1,27 +1,26 @@
 import React, {useEffect, useState} from "react";
-import ItemUser from "../itemUser/ItemUser";
 import ItemMessage from "../ItemMessage/ItemMessage";
 import {useDispatch, useSelector} from "react-redux";
 const os = require('os');
 import img_search from "../img/search.svg";
 import img_filter from "../img/filter.svg";
-import {setClientIP, setSearchUser, setUserIp, setValueMsg} from "../../toolkitRedux/toolkitSlice";
+import {setSearchUser} from "../../toolkitRedux/toolkitSlice";
+import { DatePicker } from 'antd';
 
-
-const Messages = ({OpenDoc, ws}) => {
+const listMessages = ({OpenDoc}) => {
 
     const dispatch = useDispatch();
     const clientIp = useSelector(state => state.toolkit.clientIP);
     const valuesMsg = useSelector(state => state.toolkit.valuesMsg);
     const valueUsers = useSelector(state => state.toolkit.searchUser);
-    const [swap, setSwap] = useState(false);
+    const [swapMessageTab, setSwapMessageTab] = useState(false);
     const [numIncoming, setNumIncoming] = useState(0);
     const [isOpenFilter, setIsOpenFilter] = useState(false);
-    const [sortByTime, setSortByTime] = useState(false);
 
     const drawMessages = (valuesMsgArr) => {
-        const res = []
-        if(swap) {
+        const res = [];
+
+        if(swapMessageTab) {
             valuesMsgArr.map(msg => {
                 if (JSON.parse(msg).ipRecipient !== clientIp) {
                     res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={JSON.parse(msg).id}/>)
@@ -40,26 +39,45 @@ const Messages = ({OpenDoc, ws}) => {
     }
 
     function handleChangeIncoming()  {
-        setSwap(false);
+        setSwapMessageTab(false);
     }
 
     function handleChangeOutgoing()  {
-        setSwap(true);
+        setSwapMessageTab(true);
     }
 
     useEffect(() => {
         setNumIncoming(valuesMsg.length);
-    }, [numIncoming])
-
-
-
-    // ws.getWebsocketClientIp((ipAddress) => {
-    //     dispatch(setClientIP(ipAddress));
-    // });
+    }, [numIncoming]);
 
     const filterMenu = () => {
         setIsOpenFilter(!isOpenFilter);
+        setOpenFilterByTime(false);
+        setStartDate(null);
+        setEndDate(null);
     };
+    const [openFilterByTime, setOpenFilterByTime] = useState(false);
+    const [sortByTime, setSortByTime] = useState(false);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+
+    const handleFilter = (arr) => {
+        const filtered = [...arr].filter((message) => {
+                const date = new Date (JSON.parse(message).date).getTime();
+                if(startDate !== null && endDate !== null){
+                    return date >= startDate && date <= endDate;
+                }
+                else if(startDate !== null)
+                    return date >= startDate;
+                else if(endDate !== null)
+                    return date <= endDate;
+                else {
+                    return date;
+                }
+            });
+        return [...filtered];
+    };
+
 
 
     return (
@@ -67,14 +85,14 @@ const Messages = ({OpenDoc, ws}) => {
             <h1 className="messages-list-header">Документы</h1>
             <div className="messages-list-buttons-switching">
                 <button className="button-incoming" onClick={handleChangeIncoming}
-                        style={{ backgroundColor:  swap ? "#EBECEC" : "#FFFFFF" }}>
+                        style={{ backgroundColor:  swapMessageTab ? "#EBECEC" : "#FFFFFF" }}>
                     Входящие
                     <div className="counter-cycle">
                         <div className="counter-cycle-num"> {numIncoming} </div>
                     </div>
                 </button>
                 <button className="button-sent" onClick={handleChangeOutgoing}
-                        style={{ backgroundColor:  swap ? "#FFFFFF" : "#EBECEC" }}>
+                        style={{ backgroundColor:  swapMessageTab ? "#FFFFFF" : "#EBECEC" }}>
                     Отправленные
                 </button>
             </div>
@@ -95,14 +113,23 @@ const Messages = ({OpenDoc, ws}) => {
                 </form>
             </div>
 
+
             {isOpenFilter && (
                 <div className="messages-list-search-filter-box">
-                    <div className="messages-list-search-filter-box-item" onClick={ () => {sortByTime ? setSortByTime(false) : setSortByTime(true)} }>По времени</div>
+                    <div className="messages-list-search-filter-box-item" onClick={ () => {openFilterByTime ? setOpenFilterByTime(false) : setOpenFilterByTime(true)} }>По времени</div>
                     <div className="messages-list-search-filter-box-item">По собеседнику</div>
                 </div>
             )}
+            {isOpenFilter && openFilterByTime && (
+                <div style={{ width: '332px', height: '48px', display: 'flex', justifyContent: 'center' }}>
+                    <div style={{display: 'flex', alignItems: 'center'}}>
+                        <DatePicker style={{height: '32px'}} value={startDate} onChange={(date) => {setStartDate(date); setSortByTime(true)}} />
+                        <DatePicker style={{height: '32px'}} value={endDate} onChange={(date) => {setEndDate(date); setSortByTime(true)}} />
+                    </div>
+                </div>
+            )}
             {
-                swap
+                swapMessageTab
             ?
                     (
                         <div className="messages-list-outgoing">
@@ -117,9 +144,9 @@ const Messages = ({OpenDoc, ws}) => {
                                             ?
                                             valueUsers.query
                                                 ?
-                                                drawMessages([...valuesMsg].reverse().filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
+                                                drawMessages(handleFilter(valuesMsg).filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
                                                 :
-                                                drawMessages( [...valuesMsg].reverse())
+                                                drawMessages(handleFilter(valuesMsg))
                                             :
 
                                             valueUsers.query
@@ -127,11 +154,6 @@ const Messages = ({OpenDoc, ws}) => {
                                                 drawMessages([...valuesMsg].filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
                                                 :
                                                 drawMessages([...valuesMsg])
-
-
-                                        // valuesMsg.map(msg => console.log(msg))
-                                        //valuesMsg.map(msg => <ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={msg.id} />)
-                                        //(<ItemMessage message={JSON.parse("{\"method\":\"sendMessage\",\"ipRecipient\":[\"192.168.31.14\"],\"ipSender\":\"\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"message\":\"Донесение на РБ-100С\",\"timestamp\":\"13:59\"}")} />)
                                 }
                             </div>
                         </div>
@@ -141,19 +163,17 @@ const Messages = ({OpenDoc, ws}) => {
                         <div className="messages-list-incoming">
                             <div className="messages-list-incoming-items">
                                 {
-                                    // valuesMsg.length === 0
                                     localStorage.length === 1
                                         ?
                                         "пока пусто"
                                         :
-
                                         sortByTime
                                             ?
                                             valueUsers.query
                                                 ?
-                                                drawMessages([...valuesMsg].reverse().filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
+                                                drawMessages(handleFilter(valuesMsg).filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
                                                 :
-                                                drawMessages( [...valuesMsg].reverse())
+                                                drawMessages(handleFilter(valuesMsg))
                                             :
 
                                             valueUsers.query
@@ -161,9 +181,6 @@ const Messages = ({OpenDoc, ws}) => {
                                                 drawMessages([...valuesMsg].filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
                                                 :
                                                 drawMessages([...valuesMsg])
-
-                                        // <ItemMessage message={JSON.parse("{\"method\":\"sendMessage\",\"ipRecipient\":[\"192.168.31.14\"],\"ipSender\":\"\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"message\":\"Донесение на РБ-108С\",\"timestamp\":\"13:59\"}")}/>
-
                                 }
                             </div>
                         </div>
@@ -175,4 +192,4 @@ const Messages = ({OpenDoc, ws}) => {
     )
 }
 
-export default Messages;
+export default listMessages;

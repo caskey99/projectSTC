@@ -1,14 +1,41 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch} from "react-redux";
-import {setUserIp} from "../../toolkitRedux/toolkitSlice";
+import {setDocument, setUserIp} from "../../toolkitRedux/toolkitSlice";
 import ItemUserOptions from "../itemUserOptions/ItemUserOptions";
+import {Buffer} from "buffer";
 
-const ItemUser = ({data}) => {
+const ItemUser = ({data, openDoc,closeDoc}) => {
 
     const dispatch = useDispatch();
-    const dropdownRef = useRef()
+    const dropdownRef = useRef();
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [dataFile, setDataFile] = useState();
+    const fileInputRef = useRef(null);
+    const fileReader = new FileReader();
+
+    fileReader.onloadend = () => {
+        const obj = JSON.parse(JSON.stringify(fileReader.result));
+        const json = Buffer.from(obj.substring(29), "base64").toString();
+        const result = JSON.parse(json);
+        setDataFile(result);
+        // console.log("onloadend " + json);
+        dispatch(setDocument(json));
+        closeDoc();
+        openDoc();
+
+    };
+
+    function handleFileSelect(event) {
+        event.preventDefault();
+        const fileList = event.target.files[0];
+        fileReader.readAsDataURL(fileList);
+    }
+
+    function handleClick() {
+        fileInputRef.current.click();
+    }
+
 
     useEffect(() => {
         const checkIfClickedOutside = e => {
@@ -37,9 +64,24 @@ const ItemUser = ({data}) => {
                 {isMenuOpen && (
                     <ItemUserOptions >
                         <ul className="item-list">
-                            <li className="list-item"><p>Открыть папку с документами</p></li>
+                            <li className="list-item" onClick={handleClick}>
+                                <input
+                                    type="file"
+                                    style={{ display: 'none' }}
+                                    ref={fileInputRef}
+                                    onChange={handleFileSelect}
+                                />
+                                    <p>Открыть папку с документами</p>
+                            </li>
                             <li className="list-item">Редактировать данные</li>
-                            <li className="list-item">Удалить пользователя</li>
+                            <li className="list-item" onClick={() => {
+                                const clients = JSON.parse(sessionStorage.getItem('clients'));
+                                if(clients)
+                                {
+                                    sessionStorage.setItem('clients', JSON.stringify(clients.filter(client => client.ip !== data.ip)));
+                                    location.reload();
+                                }
+                            }}>Удалить пользователя</li>
                         </ul>
                     </ItemUserOptions>
                 )}
