@@ -1,0 +1,1 @@
+{"blank":{"value":null},"name":"text","type":"text","ui":"<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<skif-document id='skif.other.text' name='Текст'>\n    <skif-text-area id='value' name='Ввод'></skif-text-area>\n</skif-document>\n</body>\n</html>\n"}

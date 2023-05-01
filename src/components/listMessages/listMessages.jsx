@@ -14,25 +14,33 @@ const listMessages = ({OpenDoc}) => {
     const valuesMsg = useSelector(state => state.toolkit.valuesMsg);
     const valueUsers = useSelector(state => state.toolkit.searchUser);
     const [swapMessageTab, setSwapMessageTab] = useState(false);
-    const [numIncoming, setNumIncoming] = useState(0);
+    const [numIncoming, setNumIncoming] = useState("0");
+    const [numOutgoing, setNumOutgoing] = useState(0);
     const [isOpenFilter, setIsOpenFilter] = useState(false);
+
+    // useEffect(() => {
+    //     checkNumIncoming();
+    // }, [valuesMsg]);
+
 
     const drawMessages = (valuesMsgArr) => {
         const res = [];
 
-        if(swapMessageTab) {
-            valuesMsgArr.map(msg => {
-                if (JSON.parse(msg).ipRecipient !== clientIp) {
-                    res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={JSON.parse(msg).id}/>)
-                }
-            });
-        }
-        else {
-            valuesMsgArr.map(msg => {
-                if (JSON.parse(msg).ipRecipient === clientIp) {
-                    res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={JSON.parse(msg).id}/>)
-                }
-            });
+        if (Array.isArray(valuesMsgArr) && valuesMsgArr.length > 0) {
+            if(swapMessageTab) {
+                valuesMsgArr.map(msg => {
+                    if (JSON.parse(msg).ipRecipient !== clientIp) {
+                        res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={JSON.parse(msg).id}/>)
+                    }
+                });
+            }
+            else {
+                valuesMsgArr.map(msg => {
+                    if (JSON.parse(msg).ipRecipient === clientIp) {
+                        res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={JSON.parse(msg).id}/>)
+                    }
+                });
+            }
         }
 
         return res;
@@ -45,10 +53,6 @@ const listMessages = ({OpenDoc}) => {
     function handleChangeOutgoing()  {
         setSwapMessageTab(true);
     }
-
-    useEffect(() => {
-        setNumIncoming(valuesMsg.length);
-    }, [numIncoming]);
 
     const filterMenu = () => {
         setIsOpenFilter(!isOpenFilter);
@@ -77,8 +81,6 @@ const listMessages = ({OpenDoc}) => {
             });
         return [...filtered];
     };
-
-
 
     return (
         <aside className="messages-list">
@@ -122,7 +124,7 @@ const listMessages = ({OpenDoc}) => {
             )}
             {isOpenFilter && openFilterByTime && (
                 <div style={{ width: '332px', height: '48px', display: 'flex', justifyContent: 'center' }}>
-                    <div style={{display: 'flex', alignItems: 'center'}}>
+                    <div style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
                         <DatePicker style={{height: '32px'}} value={startDate} onChange={(date) => {setStartDate(date); setSortByTime(true)}} />
                         <DatePicker style={{height: '32px'}} value={endDate} onChange={(date) => {setEndDate(date); setSortByTime(true)}} />
                     </div>

@@ -21,7 +21,8 @@ class DocumentViewer extends React.Component {
         //
         // return <div className="current-document">{jsx}</div>;
         console.log("ui " + this.state.ui)
-        return <div className="current-document" dangerouslySetInnerHTML={ { __html: this.state.ui  } }/>;
+
+        return (<div className="current-document" dangerouslySetInnerHTML={ { __html: this.state.ui  } }></div>);
     }
 
     read = () => {

@@ -46,10 +46,13 @@
         font-weight: 400;
       }
 
-      &-img-msg {
-        height: 10px;
-        width: 10px;
-        background-image: url("../img/msg.svg");
+      &-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 20px;
+        width: 20px;
+
         //background-image: url("https://amymhaddad.s3.amazonaws.com/morocco-blue.png");
       }
       //&-img {

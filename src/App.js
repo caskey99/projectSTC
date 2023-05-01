@@ -62,7 +62,7 @@ function App({}) {
                                             :
                                             <ChooseDocument OpenDoc={handleChangeOpened} />
                                     }
-                                    <BottomDocument ws={ws} />
+                                    <BottomDocument ws={ws} closeDoc={handleChangeClose} />
                                 </div>
                                 <Messages OpenDoc={handleChangeOpened} ws={ws}  />
                             </div>

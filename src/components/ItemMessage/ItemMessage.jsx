@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrentMessage} from "../../toolkitRedux/toolkitSlice";
 import img_doc from "../img/doc.svg";
@@ -8,9 +8,19 @@ import img_download from "../img/download.svg";
 
 
 const ItemMessage = ({message, OpenDoc}) => {
-
+    const [showDownload, setShowDownload] = useState(false);
     const dispatch = useDispatch();
     let currentMessage = null;
+
+
+    const onMouseOver = () => {
+        setShowDownload(true);
+    };
+
+    const onMouseLeave = () => {
+        setShowDownload(false);
+    };
+
 
     const openDocument = async () => {
         OpenDoc();
@@ -45,7 +55,19 @@ const ItemMessage = ({message, OpenDoc}) => {
         }
     }
 
-    return (
+
+    const handleClickDownload = () => {
+        const blob = new Blob([JSON.stringify(message.body)], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'document.json';
+        link.click();
+        console.log(url);
+    };
+
+
+        return (
         <div className='message-field'>
             <div className="item-message" onClick={() => {
                 openDocument().then(() => {
@@ -69,10 +91,14 @@ const ItemMessage = ({message, OpenDoc}) => {
                     </div>
                 </div>
 
-                {/*<img  className="item-message-info-img-msg" src={img_msg} width="16" height="13" />*/}
-                <div className="item-message-info-img-msg" ></div>
-                {/*<img  className="item-message-info-img-download" src={img_download} width="14" height="17" />*/}
-
+                <div className="item-message-info-img" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+                    {!showDownload && (
+                        <img  className="item-message-info-img-msg" src={img_msg} width="16" height="13"  />
+                    )}
+                    {showDownload && (
+                        <img  className="item-message-info-img-download" src={img_download} width="14" height="17" onClick={handleClickDownload}/>
+                    )}
+                </div>
             </div>
         </div>
     )

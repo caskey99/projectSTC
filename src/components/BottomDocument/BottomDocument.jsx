@@ -5,7 +5,7 @@ import img_x from "../img/x.svg";
 import img_docs from "../img/docs.svg";
 import {setClientIP} from "../../toolkitRedux/toolkitSlice";
 
-const BottomDocument = ({ws}) => {
+const BottomDocument = ({ws, closeDoc}) => {
     const dispatch = useDispatch();
     const userIp = useSelector(state => state.toolkit.userIp);
     const valueDoc = useSelector(state => state.toolkit.valueDoc);
@@ -61,6 +61,7 @@ const BottomDocument = ({ws}) => {
             timestamp: time,
         }
         ws.getWebsocketClient().send(JSON.stringify(obj));
+        closeDoc();
     }
 
     return (
