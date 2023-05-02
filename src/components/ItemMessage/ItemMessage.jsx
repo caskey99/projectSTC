@@ -56,7 +56,8 @@ const ItemMessage = ({message, OpenDoc}) => {
     }
 
 
-    const handleClickDownload = () => {
+    const handleClickDownload = (e) => {
+        e.stopPropagation();
         const blob = new Blob([JSON.stringify(message.body)], {type: 'application/json'});
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');

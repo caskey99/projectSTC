@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import img from "../img/Vector.svg";
 import img_x from "../img/x.svg";
 import img_docs from "../img/docs.svg";
+import img_infinity from "../img/infinity.svg";
 import {setClientIP} from "../../toolkitRedux/toolkitSlice";
 
 const BottomDocument = ({ws, closeDoc}) => {
@@ -12,20 +13,28 @@ const BottomDocument = ({ws, closeDoc}) => {
     const clientIp = useSelector(state => state.toolkit.clientIP);
 
     const [counter, setCounter] = useState(1);
+    const [isInfinity, setIsInfinity] = useState(false);
+    const [stopped, setStopped] = useState(false);
+
 
     const handleClickMinus = () => {
-        if(counter > 0);
+        if(counter > 1){
             setCounter(counter - 1);
+        }
     }
     const handleClickPlus = () => {
-        if(counter < 100);
+        if(counter < 100){
             setCounter(counter + 1);
+        }
     }
 
     ws.getWebsocketClientIp((ipAddress) => {
         dispatch(setClientIP(ipAddress));
     });
 
+    const checkIsInfinity = () => {
+        return isInfinity;
+    }
 
     const sendMsg = (userIp, valueDoc) => {
         const date = new Date();
@@ -60,9 +69,25 @@ const BottomDocument = ({ws, closeDoc}) => {
             date: date,
             timestamp: time,
         }
-        ws.getWebsocketClient().send(JSON.stringify(obj));
+
+        for(let i = 0; i < counter; i++){
+            ws.getWebsocketClient().send(JSON.stringify(obj));
+            console.log("send");
+        }
         closeDoc();
     }
+
+    // const [stop, setStop] = useState(false);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         if (!stop) {
+    //             console.log("hello mir");
+    //         }
+    //         else {
+    //         }
+    //     }, 1000);
+    //     return () => clearInterval(interval);
+    // }, [stop]);
 
     return (
         <div className="bottom-document">
@@ -88,6 +113,12 @@ const BottomDocument = ({ws, closeDoc}) => {
                         <div className="plus"/>
                     </div>
                 </div>
+                <div className="module-infinity" onClick={() => setIsInfinity(!isInfinity)}>
+                    <img src={img_infinity} height="20" width="20" />
+                </div>
+                <button className="btn-stop" onClick={() => { setStopped(true); console.log(stop)}}  style={{ visibility:  isInfinity ? "visible" : "hidden" }}>
+                    Остановить
+                </button>
             </div>
         </div>
     )

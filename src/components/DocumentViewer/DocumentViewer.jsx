@@ -5,41 +5,56 @@ class DocumentViewer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: props.document.name,
-            type: props.document.type,
-            ui: props.document.ui,
-            verified: false,
+            document: props.document,
+            blank: { ...props.document.blank },
+            isValid: false,
         };
+        this.show = this.show.bind(this);
+        this.read = this.read.bind(this);
+        this.verify = this.verify.bind(this);
     }
 
-    show = () => {
-        // const parser = new Parser();
-        // try {
-        //     var jsx = parser.parse(this.state.ui);
-        // }
-        // catch (err) {}
-        //
-        // return <div className="current-document">{jsx}</div>;
-        console.log("ui " + this.state.ui)
-
-        return (<div className="current-document" dangerouslySetInnerHTML={ { __html: this.state.ui  } }></div>);
+    show() {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(this.state.document.ui, 'text/html');
+        return <div className="current-document" dangerouslySetInnerHTML={{ __html: doc.body.innerHTML }} />;
     }
 
-    read = () => {
+    read() {
+        writeToBlank(this.state.blank);
+        function writeToBlank(obj) {
+            for (const key in obj) {
+                if(hasNestedObjects(obj[key])) {
+                    writeToBlank(obj[key]);
+                }
+                const element = document.getElementById(key);
+                if (element) {
+                    obj[key] = element.value;
+                }
+            }
+        }
+
+        function hasNestedObjects(obj) {
+            if(obj)
+                return Object.keys(obj).some(key => typeof obj[key] === 'object');
+            else
+                return false;
+        }
     }
 
-    verify = () => {
+    verify() {
+        const isValid = Object.values(this.state.blank).every(value => value !== null && value !== "");
+        this.setState({ isValid });
+        return isValid;
     }
 
     render() {
         return (
             <>
+                <button onClick={this.read}>Считать данные</button>
+                {/*<button onClick={this.verify}>Проверить</button>*/}
+                {/*{this.state.isValid && <p>Данные корректны</p>}*/}
                 {this.show()}
-                {/*<h2>{this.state.name}</h2>*/}
-                {/*<p>Type: {this.state.type}</p>*/}
-                {/*<button onClick={this.read}>Read</button>*/}
-                {/*<button onClick={this.verify}>Verify</button>*/}
-                {/*<p>Status: {this.state.verified ? 'Verified' : 'Not verified'}</p>*/}
             </>
         );
     }

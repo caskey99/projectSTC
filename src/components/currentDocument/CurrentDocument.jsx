@@ -9,22 +9,10 @@ const CurrentDocument = ({OpenDoc }) => {
     const dispatch = useDispatch();
     const [document, setDocument] = useState(useSelector(state => state.toolkit.document));
 
-    const parser = new Parser();
-    try {
-        var jsx = parser.parse(JSON.parse(document.toString()).ui);
-    }
-    catch (err) {}
-
-    //     "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<div class='current-document-title'><h3>Приказ о перевозке №9</h3></div>\n<div class='current-document-container'>\n</div>\n</body>\n</html>\n"
-
     return (
         document !== '' && document !== null
             ?
             <DocumentViewer document={JSON.parse(document.toString())} />
-            // <div className="current-document">{jsx}</div>
-            // <div className="current-document" dangerouslySetInnerHTML={ { __html: JSON.parse(document.toString()).ui  } }>
-            //
-            // </div>
             :
         <div className="current-document">
             <div className="current-document-title">

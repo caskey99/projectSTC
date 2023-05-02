@@ -15,7 +15,7 @@
   -webkit-user-select: none;
 }
 .bottom-document .right-menu {
-  width: 444px;
+  width: 38%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -131,6 +131,10 @@
 }
 .bottom-document .box-spinner .module-plus::before {
   transform: rotate(90deg);
+}
+.bottom-document .module-infinity {
+  display: flex;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=BottomDocument.css.map */

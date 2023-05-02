@@ -15,7 +15,7 @@
     -webkit-user-select: none;
   }
   & .right-menu {
-    width: 444px;
+    width: 38%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -152,5 +152,9 @@
         transform: rotate(90deg);
       }
     }
+  }
+  & .module-infinity {
+    display: flex;
+    cursor: pointer;
   }
 }

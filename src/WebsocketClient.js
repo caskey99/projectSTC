@@ -31,7 +31,7 @@ export class WebsocketClient {
 
     onOpen() {
         this.client.onopen = () => {
-            console.log("privet");
+            console.log("You are connected");
             const obj = {
                 method: "getMessage",
                 ipRecipient : '',
@@ -53,7 +53,7 @@ export class WebsocketClient {
 
     onClose() {
         this.client.onclose = () => {
-            console.log("ws closed");
+            console.log("Ws is closed");
         }
     }
 
