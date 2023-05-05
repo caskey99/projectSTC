@@ -36,7 +36,8 @@ const ListUser = ({openDoc, closeDoc, isOpenedSettings, setState, createWebsocke
 
 
     return (
-        <aside className="list-users">
+        <aside className="field-users">
+
             <div className="all-users">
                 <h1>Пользователи</h1>
             </div>
@@ -51,13 +52,14 @@ const ListUser = ({openDoc, closeDoc, isOpenedSettings, setState, createWebsocke
                     </div>
                 )
                 :
-                    (JSON.parse(sessionStorage.getItem(key))).map(element =>
+                (<div className="list-users">
+                    {JSON.parse(sessionStorage.getItem(key)).map(element =>
                         (
-                                <ItemUser openDoc={openDoc} closeDoc={closeDoc} key={element.ip} data={element} />
+                            <ItemUser openDoc={openDoc} closeDoc={closeDoc} key={element.ip} data={element} />
                         )
-                    )
+                    )}
+                </div>)
             }
-
         </aside>
     )
 }

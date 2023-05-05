@@ -2,8 +2,11 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  border-right: 1px solid #C8CACC;
-  overflow-y: scroll;
+  border-left: 1px solid #C8CACC;
+}
+.messages-list-incoming {
+  overflow: auto;
+  max-height: 100%;
 }
 .messages-list-header {
   width: 100%;

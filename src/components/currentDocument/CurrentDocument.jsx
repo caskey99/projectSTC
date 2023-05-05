@@ -13,6 +13,7 @@ const CurrentDocument = ({OpenDoc }) => {
         document !== '' && document !== null
             ?
             <DocumentViewer document={JSON.parse(document.toString())} />
+            //<DocumentViewer dataForView={} payload={JSON.parse(document.toString())} />
             :
         <div className="current-document">
             <div className="current-document-title">

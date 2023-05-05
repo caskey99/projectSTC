@@ -5,8 +5,6 @@ import img_doc from "../img/doc.svg";
 import img_msg from "../img/msg.svg";
 import img_download from "../img/download.svg";
 
-
-
 const ItemMessage = ({message, OpenDoc}) => {
     const [showDownload, setShowDownload] = useState(false);
     const dispatch = useDispatch();

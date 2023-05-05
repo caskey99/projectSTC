@@ -16,13 +16,11 @@ function App({}) {
     const [isOpened, setIsOpened] = useState(false);
 
     function handleChangeOpened()  {
-        console.log("handleChangeOpened")
         setIsOpened((prevState) => {
             return prevState = true;
         })
     }
     function handleChangeClose() {
-        console.log("handleChangeClose")
         setIsOpened((prevState) => {
             return prevState = false;
         })

@@ -25,10 +25,6 @@ export class WebsocketClient {
         });
     }
 
-    createWebsocketClient(ip) {
-        return new WebSocket(`ws://${ip}:9399`);
-    }
-
     onOpen() {
         this.client.onopen = () => {
             console.log("You are connected");

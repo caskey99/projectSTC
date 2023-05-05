@@ -1,5 +1,4 @@
 import React from 'react';
-import {Parser} from "html-to-react";
 
 class DocumentViewer extends React.Component {
     constructor(props) {
@@ -7,12 +6,13 @@ class DocumentViewer extends React.Component {
         this.state = {
             document: props.document,
             blank: { ...props.document.blank },
-            isValid: false,
+            isValid: false
         };
         this.show = this.show.bind(this);
         this.read = this.read.bind(this);
         this.verify = this.verify.bind(this);
     }
+
 
     show() {
         const parser = new DOMParser();
@@ -40,6 +40,8 @@ class DocumentViewer extends React.Component {
             else
                 return false;
         }
+        console.log(this.state.blank);
+
     }
 
     verify() {
@@ -49,9 +51,10 @@ class DocumentViewer extends React.Component {
     }
 
     render() {
+
         return (
             <>
-                <button onClick={this.read}>Считать данные</button>
+                <button onClick={ () => {this.read(); }}>Считать данные</button>
                 {/*<button onClick={this.verify}>Проверить</button>*/}
                 {/*{this.state.isValid && <p>Данные корректны</p>}*/}
                 {this.show()}

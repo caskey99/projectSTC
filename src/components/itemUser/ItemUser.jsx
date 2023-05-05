@@ -56,7 +56,8 @@ const ItemUser = ({data, openDoc,closeDoc}) => {
             <label htmlFor={data.ip}>
                 <div className="title-user">
                     <span className="naming">{data.name}</span>
-                    <span className="job">{data.ip}</span>
+                    <span className="job">{data.post}</span>
+                    {/*<span className="job">{data.ip}</span>*/}
                 </div>
             </label>
             <div className="counter-cycle" onClick={() => setIsMenuOpen(oldState => !oldState)}></div>

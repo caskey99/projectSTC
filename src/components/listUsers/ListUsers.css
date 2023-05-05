@@ -1,34 +1,7 @@
-.list-users {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 304px;
+.field-users {
   border-right: 1px solid #C8CACC;
 }
-.list-users .search-users {
-  margin-left: 3%;
-}
-.list-users .search-users input {
-  outline: none;
-}
-.list-users .file-input {
-  position: relative;
-  display: inline-block;
-  /* Hover/active */
-}
-.list-users .file-input input[type=file] {
-  cursor: pointer;
-}
-.list-users .file-input input[type=file]:focus + span {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-.list-users .file-input:hover span {
-  background-color: #59be6e;
-}
-.list-users .file-input:active span {
-  background-color: #2E703A;
-}
-.list-users .all-users {
+.field-users .all-users {
   height: 50px;
   display: flex;
   flex-direction: row;
@@ -39,12 +12,41 @@
   font-family: "Inter-SemiBold", sans-serif;
   font-weight: 600;
 }
-.list-users .all-users h1 {
+.field-users .all-users h1 {
   font-style: normal;
   font-weight: 600;
   font-size: 15px;
 }
-.list-users .all-users input:checked + label:after {
+.field-users .list-users {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 304px;
+}
+.field-users .list-users .search-users {
+  margin-left: 3%;
+}
+.field-users .list-users .search-users input {
+  outline: none;
+}
+.field-users .list-users .file-input {
+  position: relative;
+  display: inline-block;
+  /* Hover/active */
+}
+.field-users .list-users .file-input input[type=file] {
+  cursor: pointer;
+}
+.field-users .list-users .file-input input[type=file]:focus + span {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.field-users .list-users .file-input:hover span {
+  background-color: #59be6e;
+}
+.field-users .list-users .file-input:active span {
+  background-color: #2E703A;
+}
+.field-users .list-users input:checked + label:after {
   top: 5px;
   left: 20px;
   width: 12px;
@@ -54,7 +56,7 @@
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
-.list-users .item-user {
+.field-users .list-users .item-user {
   display: flex;
   flex-direction: row;
   padding: 15px 0;
@@ -62,14 +64,14 @@
   align-items: center;
   -webkit-user-select: none;
 }
-.list-users .item-user:hover {
+.field-users .list-users .item-user:hover {
   background: #EBECEC;
 }
-.list-users .item-user .title-user {
+.field-users .list-users .item-user .title-user {
   display: flex;
   flex-direction: column;
 }
-.list-users .item-user .title-user .naming {
+.field-users .list-users .item-user .title-user .naming {
   font-weight: 600;
   font-size: 13px;
   line-height: 16px;
@@ -77,7 +79,7 @@
   font-family: "Inter-SemiBold", sans-serif;
   font-weight: 600;
 }
-.list-users .item-user .title-user .job {
+.field-users .list-users .item-user .title-user .job {
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
@@ -85,7 +87,7 @@
   font-family: "Inter-Regular", sans-serif;
   font-weight: 400;
 }
-.list-users .item-user .counter-cycle {
+.field-users .list-users .item-user .counter-cycle {
   width: 16px;
   height: 16px;
   margin-right: 16px;
@@ -101,7 +103,7 @@
   text-align: center;
   letter-spacing: 0.02em;
 }
-.list-users .item-user-options {
+.field-users .list-users .item-user-options {
   position: absolute;
   top: 13px;
   left: 255px;
@@ -113,36 +115,35 @@
   display: flex;
   box-shadow: 0 1px 2px 0 #ccc, 1px 2px 4px 0 #ccc, 2px 4px 8px 0 #ccc, 2px 4px 16px 0 #ccc;
 }
-.list-users .item-user-options ul {
+.field-users .list-users .item-user-options ul {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-.list-users .item-user-options ul li {
+.field-users .list-users .item-user-options ul li {
   width: 100%;
   padding-top: 6px;
   cursor: pointer;
   padding-left: 10px;
   font-family: Inter-Regular, serif;
 }
-.list-users .item-user-options ul li:hover {
+.field-users .list-users .item-user-options ul li:hover {
   background-color: #EBECEC;
 }
-.list-users .wrapper {
+.field-users .list-users .wrapper {
   position: absolute;
 }
-
-input[type=checkbox] {
+.field-users .list-users input[type=checkbox] {
   display: none;
 }
-input[type=checkbox]:checked + label:before {
+.field-users .list-users input[type=checkbox]:checked + label:before {
   background-color: #008F75;
 }
-input[type=checkbox]:checked + label:after {
+.field-users .list-users input[type=checkbox]:checked + label:after {
   content: "";
   position: absolute;
 }
-input[type=checkbox]:checked + label:after {
+.field-users .list-users input[type=checkbox]:checked + label:after {
   top: 11px;
   left: 20px;
   width: 12px;
@@ -152,18 +153,17 @@ input[type=checkbox]:checked + label:after {
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
-input[type=checkbox]:disabled + label:before {
+.field-users .list-users input[type=checkbox]:disabled + label:before {
   border-color: #DEDFE0;
 }
-
-label {
+.field-users .list-users label {
   display: flex;
   flex-direction: row;
   position: relative;
   align-items: center;
   cursor: pointer;
 }
-label:before {
+.field-users .list-users label:before {
   content: "";
   width: 20px;
   height: 20px;
@@ -171,7 +171,7 @@ label:before {
   background: rgba(40, 43, 45, 0.02);
   border: 1px solid #C8CACC;
 }
-label:hover:before {
+.field-users .list-users label:hover:before {
   border-color: #686D71;
 }
 

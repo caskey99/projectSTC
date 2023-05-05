@@ -8,10 +8,9 @@ const toolkitSlice = createSlice({
         clientIP: '',
         valueDoc: '',
         valuesMsg: [
-            "{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.31.14\",\"ipSender\":\"192.168.0.1\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Артем\",\"message\":\"Донесение на РБ 100С\",\"date\":\"2023-04-30T11:04:18.227Z\",\"timestamp\":\"14:4\"}",
+            "{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.0.1\",\"ipSender\":\"192.168.31.14\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Артем\",\"message\":\"Донесение на РБ 100С\",\"date\":\"2023-04-30T11:04:18.227Z\",\"timestamp\":\"14:4\"}",
             "{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.31.14\",\"ipSender\":\"192.168.0.1\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Артем\",\"message\":\"Донесение на РБ 233С\",\"date\":\"2023-04-29T11:04:18.227Z\",\"timestamp\":\"14:4\"}",
             "{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.31.14\",\"ipSender\":\"192.168.0.1\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Артем\",\"message\":\"Донесение на РБ 145С\",\"date\":\"2023-04-28T11:04:18.227Z\",\"timestamp\":\"14:4\"}",
-            // "{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.31.14\",\"ipSender\":\"192.168.0.1\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Артем\",\"message\":\"Донесение на РБ 157С\",\"date\":\"2023-03-30T11:04:18.227Z\",\"timestamp\":\"14:4\"}",
             "{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.31.14\",\"ipSender\":\"192.168.0.1\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Артем\",\"message\":\"Донесение на РБ 101С\",\"date\":\"2023-01-30T11:04:18.227Z\",\"timestamp\":\"14:4\"}"
         ],
         currentMessage: '',
@@ -46,7 +45,7 @@ const toolkitSlice = createSlice({
             state.searchUser = action.payload;
         },
         setDocument(state, action) {
-            console.log("toolkitSlice" + action.payload);
+            console.log(action.payload)
             state.document = action.payload;
         },
     }
