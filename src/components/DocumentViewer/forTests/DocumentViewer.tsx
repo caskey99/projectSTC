@@ -1,6 +1,6 @@
 // import React, { useRef, useEffect, useState } from 'react';
-// // import ViewerFactory from '@skif/document-viewer';
-// // import { TSchemasFindValue } from '../../../types/backendInterfaces';
+// import ViewerFactory from '@skif/document-viewer';
+// import { TSchemasFindValue } from '../../../types/backendInterfaces';
 // import './DocumentViewer.scss';
 //
 // export interface IDocumentViewer {

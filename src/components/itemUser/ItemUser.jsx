@@ -10,32 +10,6 @@ const ItemUser = ({data, openDoc,closeDoc}) => {
     const dropdownRef = useRef();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [dataFile, setDataFile] = useState();
-    const fileInputRef = useRef(null);
-    const fileReader = new FileReader();
-
-    fileReader.onloadend = () => {
-        const obj = JSON.parse(JSON.stringify(fileReader.result));
-        const json = Buffer.from(obj.substring(29), "base64").toString();
-        const result = JSON.parse(json);
-        setDataFile(result);
-        // console.log("onloadend " + json);
-        dispatch(setDocument(json));
-        closeDoc();
-        openDoc();
-
-    };
-
-    function handleFileSelect(event) {
-        event.preventDefault();
-        const fileList = event.target.files[0];
-        fileReader.readAsDataURL(fileList);
-    }
-
-    function handleClick() {
-        fileInputRef.current.click();
-    }
-
 
     useEffect(() => {
         const checkIfClickedOutside = e => {
@@ -65,15 +39,9 @@ const ItemUser = ({data, openDoc,closeDoc}) => {
                 {isMenuOpen && (
                     <ItemUserOptions >
                         <ul className="item-list">
-                            <li className="list-item" onClick={handleClick}>
-                                <input
-                                    type="file"
-                                    style={{ display: 'none' }}
-                                    ref={fileInputRef}
-                                    onChange={handleFileSelect}
-                                />
-                                    <p>Открыть папку с документами</p>
-                            </li>
+                            {/*<li className="list-item" onClick={handleClick}>*/}
+                            {/*        <p>Открыть папку с документами</p>*/}
+                            {/*</li>*/}
                             <li className="list-item">Редактировать данные</li>
                             <li className="list-item" onClick={() => {
                                 const clients = JSON.parse(sessionStorage.getItem('clients'));

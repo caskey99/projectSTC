@@ -43,6 +43,7 @@ export class WebsocketClient {
 
     onMessage() {
         this.client.onmessage = (event) => {
+            // console.log(JSON.stringify(event.data));
             this.dispatch(setValueMsg(event.data));
         }
     }

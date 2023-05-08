@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 class DocumentViewer extends React.Component {
     constructor(props) {
@@ -6,7 +6,8 @@ class DocumentViewer extends React.Component {
         this.state = {
             document: props.document,
             blank: { ...props.document.blank },
-            isValid: false
+            isValid: false,
+            dispatch: props.dispatch
         };
         this.show = this.show.bind(this);
         this.read = this.read.bind(this);
@@ -17,6 +18,31 @@ class DocumentViewer extends React.Component {
     show() {
         const parser = new DOMParser();
         const doc = parser.parseFromString(this.state.document.ui, 'text/html');
+        fillFields(doc, flattenObject(this.state.blank));
+        function fillFields(ui, blank) {
+            ui.querySelectorAll('*').forEach((el) => {
+                if (el.id && blank[el.id]) {
+                    el.setAttribute("value", blank[el.id]);
+                }
+            });
+        }
+
+        function flattenObject(obj) {
+            const result = {};
+            function recurse(currentObj, currentKey) {
+                if (typeof currentObj !== 'object') {
+                    result[currentKey] = currentObj;
+                } else {
+                    for (let key in currentObj) {
+                        const newKey = currentKey ? `${key}` : key;
+                        recurse(currentObj[key], newKey);
+                    }
+                }
+            }
+            recurse(obj, '');
+            return result;
+        }
+
         return <div className="current-document" dangerouslySetInnerHTML={{ __html: doc.body.innerHTML }} />;
     }
 
@@ -40,9 +66,11 @@ class DocumentViewer extends React.Component {
             else
                 return false;
         }
-        console.log(this.state.blank);
-
+        // console.log(this.state.blank);
+        this.state.document.blank = this.state.blank;
+        this.state.dispatch(JSON.stringify(this.state.document));
     }
+
 
     verify() {
         const isValid = Object.values(this.state.blank).every(value => value !== null && value !== "");
@@ -54,7 +82,7 @@ class DocumentViewer extends React.Component {
 
         return (
             <>
-                <button onClick={ () => {this.read(); }}>Считать данные</button>
+                <button onClick={ () => {this.read()}}>Считать данные</button>
                 {/*<button onClick={this.verify}>Проверить</button>*/}
                 {/*{this.state.isValid && <p>Данные корректны</p>}*/}
                 {this.show()}

@@ -12,6 +12,7 @@ const BottomDocument = ({ws, closeDoc}) => {
     const userIp = useSelector(state => state.toolkit.userIp);
     const valueDoc = useSelector(state => state.toolkit.valueDoc);
     const clientIp = useSelector(state => state.toolkit.clientIP);
+    const document = useSelector(state => state.toolkit.documentBody);
 
     const [counter, setCounter] = useState(1);
     const [isInfinity, setIsInfinity] = useState(false);
@@ -49,14 +50,14 @@ const BottomDocument = ({ws, closeDoc}) => {
         if (currClient.length === 1)
             nameClient = currClient[0].name
 
-        const msg = {
-            "blank": {
-                "value": null
-            },
-            "name": "text",
-            "type": "text",
-            "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<skif-document id='skif.other.text' name='Текст'>\n    <skif-text-area id='value' name='Ввод'></skif-text-area>\n</skif-document>\n</body>\n</html>\n"
-        }
+        // const msg = {
+        //     "blank": {
+        //         "value": null
+        //     },
+        //     "name": "text",
+        //     "type": "text",
+        //     "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<skif-document id='skif.other.text' name='Текст'>\n    <skif-text-area id='value' name='Ввод'></skif-text-area>\n</skif-document>\n</body>\n</html>\n"
+        // }
 
 
         const obj = {
@@ -66,10 +67,14 @@ const BottomDocument = ({ws, closeDoc}) => {
             ipCurr: '',
             id: '',
             nameSender: nameClient,
-            message: valueDoc,
-            body: msg,
+            message: document,
+            body: document,
             date: date,
             timestamp: time,
+        }
+
+        if(isInfinity){
+
         }
 
         for(let i = 0; i < counter; i++){
@@ -90,6 +95,7 @@ const BottomDocument = ({ws, closeDoc}) => {
     //     }, 1000);
     //     return () => clearInterval(interval);
     // }, [stop]);
+
 
     return (
         <div className="bottom-document">
@@ -128,7 +134,7 @@ const BottomDocument = ({ws, closeDoc}) => {
                     <div className="module-infinity" onClick={() => setIsInfinity(!isInfinity)}>
                         <img src={img_infinity} height="20" width="20" />
                     </div>
-                    <button className="btn-stop" onClick={() => { setStopped(true); console.log(stop)}}  style={{ visibility:  isInfinity ? "visible" : "hidden" }}>
+                    <button className="btn-stop" onClick={() => { setStopped(true);}}  style={{ visibility:  isInfinity ? "visible" : "hidden" }}>
                         Остановить
                     </button>
                 </div>

@@ -8,15 +8,13 @@ const toolkitSlice = createSlice({
         clientIP: '',
         valueDoc: '',
         valuesMsg: [
-            "{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.0.1\",\"ipSender\":\"192.168.31.14\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Артем\",\"message\":\"Донесение на РБ 100С\",\"date\":\"2023-04-30T11:04:18.227Z\",\"timestamp\":\"14:4\"}",
-            "{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.31.14\",\"ipSender\":\"192.168.0.1\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Артем\",\"message\":\"Донесение на РБ 233С\",\"date\":\"2023-04-29T11:04:18.227Z\",\"timestamp\":\"14:4\"}",
-            "{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.31.14\",\"ipSender\":\"192.168.0.1\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Артем\",\"message\":\"Донесение на РБ 145С\",\"date\":\"2023-04-28T11:04:18.227Z\",\"timestamp\":\"14:4\"}",
-            "{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.31.14\",\"ipSender\":\"192.168.0.1\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Артем\",\"message\":\"Донесение на РБ 101С\",\"date\":\"2023-01-30T11:04:18.227Z\",\"timestamp\":\"14:4\"}"
-        ],
+            //"{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.31.14\",\"ipSender\":\"192.168.31.14\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Зайцев Артем\",\"message\":\"\",\"body\":\"{\\\"blank\\\":{\\\"signature\\\":{\\\"name\\\":\\\"asd\\\",\\\"post\\\":\\\"asd\\\"},\\\"time\\\":\\\"12:31:23\\\"},\\\"name\\\":\\\"Приказ о перевозке №9\\\",\\\"type\\\":\\\"text\\\",\\\"ui\\\":\\\"<!DOCTYPE html>\\\\n<html lang='ru'>\\\\n<head><meta charset='UTF-8'></head>\\\\n<body>\\\\n<div class='current-document-title'><h3>Приказ о перевозке №9</h3></div>\\\\n<div class='current-document-container'>\\\\n<div class='current-document-container-identity'><span>идентификатор распоряжения</span>  <input type=\\\\\\\"text\\\\\\\" id=\\\\\\\"name\\\\\\\" placeholder=\\\\\\\"Placeholder\\\\\\\"></input> <br> <div className=\\\\\\\"current-document-container-nameObject\\\\\\\"> <span>Наименование объекта</span> <input type=\\\\\\\"text\\\\\\\" id=\\\\\\\"post\\\\\\\" placeholder=\\\\\\\"Placeholder\\\\\\\"/> </div> </div> <div className=\\\\\\\"current-document-container-timer\\\\\\\"> <span className=\\\\\\\"timer-subtitle\\\\\\\">Длительность</span>  <input type=\\\\\\\"time\\\\\\\" id=\\\\\\\"time\\\\\\\" step=\\\\\\\"2\\\\\\\" /> </div>  \\\\n</div>\\\\n</body>\\\\n</html>\\\\n\\\"}\",\"date\":\"2023-05-08T11:34:42.189Z\",\"timestamp\":\"14:34\"}",
+            //"{\"method\":\"sendMessage\",\"ipRecipient\":\"192.168.31.14\",\"ipSender\":\"192.168.31.14\",\"ipCurr\":\"192.168.31.14\",\"id\":0,\"nameSender\":\"Зайцев Артем\",\"message\":\"\",\"body\":\"{\\\"blank\\\":{\\\"signature\\\":{\\\"name\\\":\\\"asd\\\",\\\"post\\\":\\\"asd\\\"},\\\"time\\\":\\\"12:31:23\\\"},\\\"name\\\":\\\"Донесение на РБ-108С\\\",\\\"type\\\":\\\"text\\\",\\\"ui\\\":\\\"<!DOCTYPE html>\\\\n<html lang='ru'>\\\\n<head><meta charset='UTF-8'></head>\\\\n<body>\\\\n<div class='current-document-title'><h3>Приказ о перевозке №9</h3></div>\\\\n<div class='current-document-container'>\\\\n<div class='current-document-container-identity'><span>идентификатор распоряжения</span>  <input type=\\\\\\\"text\\\\\\\" id=\\\\\\\"name\\\\\\\" placeholder=\\\\\\\"Placeholder\\\\\\\"></input> <br> <div className=\\\\\\\"current-document-container-nameObject\\\\\\\"> <span>Наименование объекта</span> <input type=\\\\\\\"text\\\\\\\" id=\\\\\\\"post\\\\\\\" placeholder=\\\\\\\"Placeholder\\\\\\\"/> </div> </div> <div className=\\\\\\\"current-document-container-timer\\\\\\\"> <span className=\\\\\\\"timer-subtitle\\\\\\\">Длительность</span>  <input type=\\\\\\\"time\\\\\\\" id=\\\\\\\"time\\\\\\\" step=\\\\\\\"2\\\\\\\" /> </div>  \\\\n</div>\\\\n</body>\\\\n</html>\\\\n\\\"}\",\"date\":\"2023-05-08T11:34:42.189Z\",\"timestamp\":\"14:34\"}"
+          ],
         currentMessage: '',
         // searchVal: {query1:''},
         searchUser: {query:''},
-        document: '',
+        documentBody: ''
     },
     reducers: {
         setUserIp(state, action){
@@ -32,6 +30,7 @@ const toolkitSlice = createSlice({
             state.valueDoc = action.payload;
         },
         setValueMsg(state, action) {
+            // console.log(action.payload);
             state.valuesMsg.push(action.payload);
         },
         setCurrentMessage(state, action) {
@@ -44,12 +43,15 @@ const toolkitSlice = createSlice({
         setSearchUser(state, action){
             state.searchUser = action.payload;
         },
-        setDocument(state, action) {
-            console.log(action.payload)
-            state.document = action.payload;
+        setDocumentBody(state, action) {
+            // console.log(action.payload);
+            state.documentBody = action.payload;
+        },
+        setDocumentFront(state, action) {
+            state.documentFront = action.payload;
         },
     }
 })
 
 export default toolkitSlice.reducer
-export const {setUserIp, setNewUserIp, setClientIP, setValueDoc, setValueMsg, setCurrentMessage, setSearchUser, setDocument} = toolkitSlice.actions
+export const {setUserIp, setNewUserIp, setClientIP, setValueDoc, setValueMsg, setCurrentMessage, setSearchUser, setDocumentBody, setDocumentFront} = toolkitSlice.actions

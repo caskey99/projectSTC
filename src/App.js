@@ -10,7 +10,7 @@ import {setValueMsg} from "./toolkitRedux/toolkitSlice";
 import {WebsocketClient} from "./WebsocketClient";
 
 
-function App({}) {
+function App() {
 
     const [isOpenedSettings, setIsOpenedSettings] = useState(false);
     const [isOpened, setIsOpened] = useState(false);
@@ -56,13 +56,13 @@ function App({}) {
                                 <div className="document-flow">
                                     {
                                         isOpened ?
-                                            <CurrentDocument OpenDoc={handleChangeClose} />
+                                            <CurrentDocument openDoc={handleChangeClose} />
                                             :
-                                            <ChooseDocument OpenDoc={handleChangeOpened} />
+                                            <ChooseDocument openDoc={handleChangeOpened} closeDoc={handleChangeClose} />
                                     }
                                     <BottomDocument ws={ws} closeDoc={handleChangeClose} />
                                 </div>
-                                <Messages OpenDoc={handleChangeOpened} ws={ws}  />
+                                <Messages OpenDoc={handleChangeOpened} closeDoc={handleChangeClose} ws={ws}  />
                             </div>
                         </div>
                     </main>
@@ -75,5 +75,3 @@ function App({}) {
 
 export default App;
 
-// <div className="current-document" dangerouslySetInnerHTML={ { __html: document.ui  } }>
-// const document = useSelector(state => state.toolkit.document);

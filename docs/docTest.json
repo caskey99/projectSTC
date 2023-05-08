@@ -6,8 +6,8 @@
       },
       "time": null
     },
-    "name": "Текст",
+    "name": "Приказ о перевозке №9",
     "type": "text",
-    "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<div class='current-document-title'><h3>Приказ о перевозке №9</h3></div>\n<div class='current-document-container'>\n<div class='current-document-container-identity'><span>идентификатор распоряжения</span>  <input type=\"text\" id=\"name\" placeholder=\"Placeholder\"></input> <br> <div className=\"current-document-container-nameObject\"> <span>Наименование объекта</span> <input type=\"text\" id=\"post\" placeholder=\"Placeholder\"/> </div> </div> <div className=\"current-document-container-timer\"> <span className=\"timer-subtitle\">Длительность</span>  <input type=\"time\" id=\"time\" step=\"2\"/> </div>  \n</div>\n</body>\n</html>\n"
+    "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<div class='current-document-title'><h3>Приказ о перевозке №9</h3></div>\n<div class='current-document-container'>\n<div class='current-document-container-identity'><span>идентификатор распоряжения</span>  <input type=\"text\" id=\"name\" placeholder=\"Placeholder\"></input> <br> <div className=\"current-document-container-nameObject\"> <span>Наименование объекта</span> <input type=\"text\" id=\"post\" placeholder=\"Placeholder\"/> </div> </div> <div className=\"current-document-container-timer\"> <span className=\"timer-subtitle\">Длительность</span>  <input type=\"time\" id=\"time\" step=\"2\" /> </div>  \n</div>\n</body>\n</html>\n"
  }
 

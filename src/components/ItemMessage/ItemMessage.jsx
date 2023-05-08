@@ -5,7 +5,7 @@ import img_doc from "../img/doc.svg";
 import img_msg from "../img/msg.svg";
 import img_download from "../img/download.svg";
 
-const ItemMessage = ({message, OpenDoc}) => {
+const ItemMessage = ({message, OpenDoc, closeDoc}) => {
     const [showDownload, setShowDownload] = useState(false);
     const dispatch = useDispatch();
     let currentMessage = null;
@@ -21,17 +21,17 @@ const ItemMessage = ({message, OpenDoc}) => {
 
 
     const openDocument = async () => {
+        closeDoc();
         OpenDoc();
     }
 
     const dispatchMessage = async (message) => {
-        // dispatch(setCurrentMessage(message));
-        currentMessage = message;
+        dispatch(setCurrentMessage(message));
     }
 
 
     const  read = (currentMessage) => {
-        document.getElementById("message").value = currentMessage.message;
+        // document.getElementById("message").value = currentMessage.message;
     }
     // console.log(JSON.stringify(message))
 
@@ -56,7 +56,7 @@ const ItemMessage = ({message, OpenDoc}) => {
 
     const handleClickDownload = (e) => {
         e.stopPropagation();
-        const blob = new Blob([JSON.stringify(message.body)], {type: 'application/json'});
+        const blob = new Blob([message.body], {type: 'application/json'});
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
@@ -69,8 +69,8 @@ const ItemMessage = ({message, OpenDoc}) => {
         return (
         <div className='message-field'>
             <div className="item-message" onClick={() => {
-                openDocument().then(() => {
-                    dispatchMessage(message)
+                dispatchMessage(message).then(() => {
+                    openDocument()
                         .then(() => {
                             read(currentMessage)
                         })
@@ -83,7 +83,12 @@ const ItemMessage = ({message, OpenDoc}) => {
                     {/*    <span>ID {message.id}</span>*/}
                     {/*</div>*/}
                     <div className="item-message-info-content">
-                        <span>{message.message}</span>
+                        {message.body
+                        ?
+                            <span>{JSON.parse(message.body).name}</span>
+                        :
+                            <span>{message.message()}</span>
+                        }
                     </div>
                     <div className="item-message-info-time">
                         <span>{formatMessageTime(message.date)}</span>

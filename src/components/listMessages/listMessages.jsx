@@ -7,7 +7,7 @@ import img_filter from "../img/filter.svg";
 import {setSearchUser} from "../../toolkitRedux/toolkitSlice";
 import { DatePicker } from 'antd';
 
-const listMessages = ({OpenDoc}) => {
+const listMessages = ({OpenDoc, closeDoc}) => {
 
     const dispatch = useDispatch();
     const clientIp = useSelector(state => state.toolkit.clientIP);
@@ -25,19 +25,19 @@ const listMessages = ({OpenDoc}) => {
 
     const drawMessages = (valuesMsgArr) => {
         const res = [];
-
+        // console.log(valuesMsgArr);
         if (Array.isArray(valuesMsgArr) && valuesMsgArr.length > 0) {
             if(swapMessageTab) {
                 valuesMsgArr.map(msg => {
                     if (JSON.parse(msg).ipRecipient !== clientIp) {
-                        res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={JSON.parse(msg).id}/>)
+                        res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} closeDoc={closeDoc} key={JSON.parse(msg).id}/>)
                     }
                 });
             }
             else {
                 valuesMsgArr.map(msg => {
                     if (JSON.parse(msg).ipRecipient === clientIp) {
-                        res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} key={JSON.parse(msg).id}/>)
+                        res.push(<ItemMessage message={JSON.parse(msg)} OpenDoc={OpenDoc} closeDoc={closeDoc} key={JSON.parse(msg).id}/>)
                     }
                 });
             }
