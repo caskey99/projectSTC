@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch} from "react-redux";
-import {setDocument, setUserIp} from "../../toolkitRedux/toolkitSlice";
+import {setUserIp} from "../../toolkitRedux/toolkitSlice";
 import ItemUserOptions from "../itemUserOptions/ItemUserOptions";
 import {Buffer} from "buffer";
 
@@ -8,8 +8,9 @@ const ItemUser = ({data, openDoc,closeDoc}) => {
 
     const dispatch = useDispatch();
     const dropdownRef = useRef();
-
+    const [value, setValue] = useState(data.name);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         const checkIfClickedOutside = e => {
@@ -24,14 +25,55 @@ const ItemUser = ({data, openDoc,closeDoc}) => {
         }
     }, [isMenuOpen])
 
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
+    const handleEditSubmit = (value) => {
+        const clients = JSON.parse(sessionStorage.getItem('clients'));
+        console.log(clients)
+        if(clients)
+        {
+            sessionStorage.setItem('clients', JSON.stringify(clients.map(client => {
+                if(client.ip === data.ip){
+                    client.name = value;
+                    return client;
+                }
+                return client;
+            })));
+            location.reload();
+        }
+    };
+
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            handleEditSubmit(value);
+            event.target.blur();
+        }
+    }
+
+    const drawTitleUser = () => {
+        const res = [];
+        if(isEditing)
+            res.push(<input className="naming" value={value} onChange={handleChange} onKeyUp={handleKeyPress}></input>, <span className="job">{data.post}</span>)
+        else
+            res.push(<span className="naming">{data.name}</span>, <span className="job">{data.post}</span>)
+        return res
+    }
+
     return (
         <div className="item-user">
             <input type="checkbox" id={data.ip} name="users" onClick={() => {dispatch(setUserIp(data.ip)) ; console.log(data.ip)}}/>
             <label htmlFor={data.ip}>
                 <div className="title-user">
-                    <span className="naming">{data.name}</span>
-                    <span className="job">{data.post}</span>
-                    {/*<span className="job">{data.ip}</span>*/}
+                    {
+                        isEditing
+                            ?
+                            drawTitleUser()
+                            :
+                            drawTitleUser()
+
+                    }
                 </div>
             </label>
             <div className="counter-cycle" onClick={() => setIsMenuOpen(oldState => !oldState)}></div>
@@ -39,10 +81,7 @@ const ItemUser = ({data, openDoc,closeDoc}) => {
                 {isMenuOpen && (
                     <ItemUserOptions >
                         <ul className="item-list">
-                            {/*<li className="list-item" onClick={handleClick}>*/}
-                            {/*        <p>Открыть папку с документами</p>*/}
-                            {/*</li>*/}
-                            <li className="list-item">Редактировать данные</li>
+                            <li className="list-item" onClick={ () => { setIsEditing(!isEditing)}}>Редактировать данные</li>
                             <li className="list-item" onClick={() => {
                                 const clients = JSON.parse(sessionStorage.getItem('clients'));
                                 if(clients)
