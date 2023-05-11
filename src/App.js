@@ -11,8 +11,6 @@ import {WebsocketClient} from "./WebsocketClient";
 
 
 function App() {
-
-    const [isOpenedSettings, setIsOpenedSettings] = useState(false);
     const [isOpened, setIsOpened] = useState(false);
 
     function handleChangeOpened()  {
@@ -26,16 +24,7 @@ function App() {
         })
     }
 
-    let ws = new WebsocketClient();
-
-    function createWebsocketClient(ip) {
-        // const ip = useSelector(state => state.toolkit.newUserIp);
-        // console.log("ip " + ip);
-        // ws.onClose();
-        // ws = ws.createWebsocketClient(ip)
-        // console.log(ws);
-    }
-
+    const ws = new WebsocketClient();
 
     ws.onOpen();
 
@@ -52,7 +41,7 @@ function App() {
                     <main className="main">
                         <div className="main-container">
                             <div className="work-flow">
-                                <ListUser openDoc={handleChangeOpened} closeDoc={handleChangeClose} isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} createWebsocketClient={createWebsocketClient}/>
+                                <ListUser openDoc={handleChangeOpened} closeDoc={handleChangeClose} />
                                 <div className="document-flow">
                                     {
                                         isOpened ?

@@ -1,15 +1,8 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useState} from "react";
 import ItemUser from "../itemUser/ItemUser";
-import ItemUserOptions from "../itemUserOptions/ItemUserOptions";
-import { Buffer } from 'buffer';
-import img from "../img/gearWhee.svg";
-import {setNewUserIp, setSearchVal} from "../../toolkitRedux/toolkitSlice";
-import {useDispatch, useSelector} from "react-redux";
+import { Buffer } from 'buffer';;
 
-
-const ListUser = ({openDoc, closeDoc, isOpenedSettings, setState, createWebsocketClient}) => {
-    const dispatch = useDispatch();
-    let userIP = null;
+const ListUser = ({openDoc, closeDoc}) => {
     const key = 'clients';
     const [update, setUpdate] = useState(true);
     const fileReader = new FileReader();
@@ -21,7 +14,7 @@ const ListUser = ({openDoc, closeDoc, isOpenedSettings, setState, createWebsocke
         setUpdate(false);
     };
 
-    fileReader.addEventListener('progress', (event) => { /* Процент загрузки json файла в console */
+    fileReader.addEventListener('progress', (event) => {
         if (event.loaded && event.total) {
             const percent = (event.loaded / event.total) * 100;
             console.log(`Progress: ${Math.round(percent)}`);

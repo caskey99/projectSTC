@@ -8,7 +8,6 @@ import img_download from "../img/download.svg";
 const ItemMessage = ({message, OpenDoc, closeDoc}) => {
     const [showDownload, setShowDownload] = useState(false);
     const dispatch = useDispatch();
-    let currentMessage = null;
 
 
     const onMouseOver = () => {
@@ -26,11 +25,11 @@ const ItemMessage = ({message, OpenDoc, closeDoc}) => {
     }
 
     const dispatchMessage = async (message) => {
-        dispatch(setCurrentMessage(message));
+        dispatch(setCurrentMessage(JSON.stringify(message)));
     }
 
 
-    const  read = (currentMessage) => {
+    const  read = () => {
         // document.getElementById("message").value = currentMessage.message;
     }
     // console.log(JSON.stringify(message))
@@ -62,7 +61,6 @@ const ItemMessage = ({message, OpenDoc, closeDoc}) => {
         link.href = url;
         link.download = 'document.json';
         link.click();
-        console.log(url);
     };
 
 
@@ -72,16 +70,12 @@ const ItemMessage = ({message, OpenDoc, closeDoc}) => {
                 dispatchMessage(message).then(() => {
                     openDocument()
                         .then(() => {
-                            read(currentMessage)
+                            read()
                         })
                 })
             }}>
                 <img  className="item-message-info-img-doc" src={img_doc} width="16" height="20" />
                 <div className="item-message-info">
-
-                    {/*<div className="item-message-info-id">*/}
-                    {/*    <span>ID {message.id}</span>*/}
-                    {/*</div>*/}
                     <div className="item-message-info-content">
                         {message.body
                         ?

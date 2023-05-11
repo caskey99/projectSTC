@@ -2,15 +2,18 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch} from "react-redux";
 import {setUserIp} from "../../toolkitRedux/toolkitSlice";
 import ItemUserOptions from "../itemUserOptions/ItemUserOptions";
+import img_menu from "../img/menu.svg";
+
 import {Buffer} from "buffer";
 
-const ItemUser = ({data, openDoc,closeDoc}) => {
+const ItemUser = ({data}) => {
 
     const dispatch = useDispatch();
     const dropdownRef = useRef();
     const [value, setValue] = useState(data.name);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
 
     useEffect(() => {
         const checkIfClickedOutside = e => {
@@ -61,8 +64,16 @@ const ItemUser = ({data, openDoc,closeDoc}) => {
         return res
     }
 
+    const deleteUser = () => {
+        const clients = JSON.parse(sessionStorage.getItem('clients'));
+        if(clients) {
+            sessionStorage.setItem('clients', JSON.stringify(clients.filter(client => client.ip !== data.ip)));
+            location.reload();
+        }
+    }
+
     return (
-        <div className="item-user">
+        <div className="item-user" onMouseOver={() => {setShowMenu(true)}} onMouseLeave={() => {setShowMenu(false)}}>
             <input type="checkbox" id={data.ip} name="users" onClick={() => {dispatch(setUserIp(data.ip)) ; console.log(data.ip)}}/>
             <label htmlFor={data.ip}>
                 <div className="title-user">
@@ -72,24 +83,20 @@ const ItemUser = ({data, openDoc,closeDoc}) => {
                             drawTitleUser()
                             :
                             drawTitleUser()
-
                     }
                 </div>
             </label>
-            <div className="counter-cycle" onClick={() => setIsMenuOpen(oldState => !oldState)}></div>
+            <div className="counter-cycle" onClick={() => setIsMenuOpen(oldState => !oldState)} >
+                <img src={img_menu} style={{ visibility:  showMenu ? "visible" : "hidden" }}></img>
+            </div>
             <div className="wrapper" ref={dropdownRef}>
                 {isMenuOpen && (
                     <ItemUserOptions >
                         <ul className="item-list">
-                            <li className="list-item" onClick={ () => { setIsEditing(!isEditing)}}>Редактировать данные</li>
-                            <li className="list-item" onClick={() => {
-                                const clients = JSON.parse(sessionStorage.getItem('clients'));
-                                if(clients)
-                                {
-                                    sessionStorage.setItem('clients', JSON.stringify(clients.filter(client => client.ip !== data.ip)));
-                                    location.reload();
-                                }
-                            }}>Удалить пользователя</li>
+                            <li className="list-item"
+                                onClick={() => { setIsEditing(!isEditing)}}>Редактировать данные</li>
+                            <li className="list-item"
+                                onClick={() => { deleteUser(); }}>Удалить пользователя</li>
                         </ul>
                     </ItemUserOptions>
                 )}

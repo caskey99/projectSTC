@@ -10,7 +10,6 @@ import img_msg from "../img/msg.svg";
 const BottomDocument = ({ws, closeDoc}) => {
     const dispatch = useDispatch();
     const userIp = useSelector(state => state.toolkit.userIp);
-    const valueDoc = useSelector(state => state.toolkit.valueDoc);
     const clientIp = useSelector(state => state.toolkit.clientIP);
     const document = useSelector(state => state.toolkit.documentBody);
 
@@ -39,7 +38,7 @@ const BottomDocument = ({ws, closeDoc}) => {
         return isInfinity;
     }
 
-    const sendMsg = (userIp, valueDoc) => {
+    const sendMsg = (userIp) => {
         const date = new Date();
         const hour = date.getHours();
         const minutes = date.getMinutes();
@@ -50,21 +49,10 @@ const BottomDocument = ({ws, closeDoc}) => {
         if (currClient.length === 1)
             nameClient = currClient[0].name
 
-        // const msg = {
-        //     "blank": {
-        //         "value": null
-        //     },
-        //     "name": "text",
-        //     "type": "text",
-        //     "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<skif-document id='skif.other.text' name='Текст'>\n    <skif-text-area id='value' name='Ввод'></skif-text-area>\n</skif-document>\n</body>\n</html>\n"
-        // }
-
-
         const obj = {
             method: "sendMessage",
             ipRecipient : userIp,
             ipSender: clientIp,
-            ipCurr: '',
             id: '',
             nameSender: nameClient,
             message: document,
@@ -100,7 +88,7 @@ const BottomDocument = ({ws, closeDoc}) => {
     return (
         <div className="bottom-document">
             <div className="left-menu">
-                <button className='btn-send-true' onClick={() => {sendMsg(userIp, valueDoc); setIsSendingOptions(false)}}>
+                <button className='btn-send-true' onClick={() => {sendMsg(userIp); setIsSendingOptions(false)}}>
                                          <span>
                                             Отправить
                                          </span>

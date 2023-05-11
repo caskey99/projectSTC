@@ -32,7 +32,6 @@ export class WebsocketClient {
                 method: "getMessage",
                 ipRecipient : '',
                 ipSender: '',
-                ipCurr: '',
                 id: '',
                 message: '',
                 timestamp: '',

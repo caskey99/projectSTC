@@ -7,7 +7,7 @@
 //     dataForView: TSchemasFindValue | null,
 //     payload?: Record<string, null> | null,
 //     flags?: Array<string>,
-//     setViewer?: (viewer: Record<any, any>) => void, // ToDo Временно для валидации данных документа
+//     setViewer?: (viewer: Record<any, any>) => void,
 // }
 //
 // const DocumentViewer: React.FC<IDocumentViewer> = ({

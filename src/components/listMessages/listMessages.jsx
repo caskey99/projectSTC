@@ -42,7 +42,6 @@ const listMessages = ({OpenDoc, closeDoc}) => {
                 });
             }
         }
-
         return res;
     }
 
@@ -60,12 +59,13 @@ const listMessages = ({OpenDoc, closeDoc}) => {
         setStartDate(null);
         setEndDate(null);
     };
+
     const [openFilterByTime, setOpenFilterByTime] = useState(false);
     const [sortByTime, setSortByTime] = useState(false);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
-    const handleFilter = (arr) => {
+    const handleFilterDate = (arr) => {
         const filtered = [...arr].filter((message) => {
                 const date = new Date (JSON.parse(message).date).getTime();
                 if(startDate !== null && endDate !== null){
@@ -146,9 +146,9 @@ const listMessages = ({OpenDoc, closeDoc}) => {
                                             ?
                                             valueUsers.query
                                                 ?
-                                                drawMessages(handleFilter(valuesMsg).filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
+                                                drawMessages(handleFilterDate(valuesMsg).filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
                                                 :
-                                                drawMessages(handleFilter(valuesMsg))
+                                                drawMessages(handleFilterDate(valuesMsg))
                                             :
 
                                             valueUsers.query
@@ -173,9 +173,9 @@ const listMessages = ({OpenDoc, closeDoc}) => {
                                             ?
                                             valueUsers.query
                                                 ?
-                                                drawMessages(handleFilter(valuesMsg).filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
+                                                drawMessages(handleFilterDate(valuesMsg).filter(msg => JSON.parse(msg).nameSender.toLowerCase().includes(valueUsers.query.toLowerCase())))
                                                 :
-                                                drawMessages(handleFilter(valuesMsg))
+                                                drawMessages(handleFilterDate(valuesMsg))
                                             :
 
                                             valueUsers.query

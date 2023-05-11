@@ -13,8 +13,6 @@ server.on('connection', function connection(ws, req) {
     console.log('connected');
     ws.on('message', msg => {
         msg = JSON.parse(msg);
-        const ip = req.socket.remoteAddress.replace(/^.*:/, '');
-        msg.ipCurr = ip;
         switch (msg.method) {
             case "sendMessage":
                 sendMsgToIp(ws, req, msg);

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setDocumentBody, setValueDoc} from "../../toolkitRedux/toolkitSlice";
-import { Parser } from 'html-to-react';
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
 
 const CurrentDocument = ({}) => {
@@ -11,38 +10,19 @@ const CurrentDocument = ({}) => {
     const valuesMsg = (useSelector(state => state.toolkit.valuesMsg));
     const currMsg = useSelector(state => state.toolkit.currentMessage);
 
-    // if(document){
-    //     console.log("document")
-    //     console.log(JSON.parse(document))
-    // }
-    //
-    // if(valuesMsg.length) {
-    //     console.log("valuesMsg")
-    //     console.log(document);
-    //     console.log(JSON.parse(JSON.parse(valuesMsg[0]).body))
-    //}
-
-    function setDoc(doc){
+    function setDocument(doc){
         dispatch(setDocumentBody(doc));
-    }
-
-    const foo = () => {
-        const arr = [...valuesMsg].filter(msg => msg === JSON.stringify(currMsg))
-        return arr;
-        // console.log(valuesMsg)
-        // console.log(JSON.stringify(currMsg))
-        // console.log(arr)
     }
 
     return (
         document !== '' && document !== null
             ?
-            <DocumentViewer document={JSON.parse(document)} dispatch={setDoc}  />
+            <DocumentViewer document={JSON.parse(document)} dispatch={setDocument}  />
             //<DocumentViewer dataForView={JSON.parse(document.toString())} payload={JSON.parse(document.toString()).blank} />
             :
             valuesMsg.length
             ?
-                <DocumentViewer document={JSON.parse(JSON.parse(foo()[0]).body)} dispatch={setDoc}  />
+                <DocumentViewer document={JSON.parse(JSON.parse(currMsg).body)} dispatch={setDocument}  />
                 :
                 <div>pusto</div>
         //
