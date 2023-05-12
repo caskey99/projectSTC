@@ -43,8 +43,8 @@ const BottomDocument = ({ws, closeDoc}) => {
         const hour = date.getHours();
         const minutes = date.getMinutes();
         const time = hour + ":" + minutes;
-        console.log(time);
-        const currClient = JSON.parse(sessionStorage.getItem("clients")).filter(element => element.ip === clientIp);
+        const currClient = JSON.parse(sessionStorage.getItem("clients"))
+            .filter(element => element.ip === clientIp);
         let nameClient = "noName";
         if (currClient.length === 1)
             nameClient = currClient[0].name
@@ -61,13 +61,8 @@ const BottomDocument = ({ws, closeDoc}) => {
             timestamp: time,
         }
 
-        if(isInfinity){
-
-        }
-
         for(let i = 0; i < counter; i++){
             ws.getWebsocketClient().send(JSON.stringify(obj));
-            console.log("send");
         }
         closeDoc();
     }

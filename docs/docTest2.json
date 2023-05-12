@@ -1,0 +1,15 @@
+{
+    "blank": {
+        "signature": {
+          "id": null,
+        "name": null,
+        "post": null
+      },
+      "time": null
+    },
+    "name": "Приказ о перевозке №11",
+    "type": "text",
+   "ui": "<!DOCTYPE html>\n<html lang='ru'>\n<head><meta charset='UTF-8'></head>\n<body>\n<div class=\"current-document\">\n<div class=\"current-document-title\">\n                <h3>Приказ о перевозке №11</h3>\n                <div class=\"icon\">\n                    <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                        <path fillRule=\"evenodd\" clipRule=\"evenodd\" d=\"M7.29409 8L0 0.705911L0.705911 0L8 7.29409L15.2941 0L16 0.705911L8.70591 8L16 15.2941L15.2941 16L8 8.70591L0.705911 16L0 15.2941L7.29409 8Z\" fill=\"#45494D\"/>\n                    </svg>\n                </div>\n            </div>\n            <div class=\"current-document-container\">\n                <div class=\"current-document-container-identity\">\n                    <span>идентификатор распоряжения</span>\n                    <input type=\"text\" id=\"id\" placeholder=\"Placeholder\"/>\n                    <span class=\"identity-subtitle\">Текст пояснения</span>\n                </div>\n                <div class=\"current-document-container-project\">\n                    <span>Проект</span>\n                    <select name=\"\" id=\"\" >\n                        <option value=\"\">Не задано</option>\n                    </select>\n                </div>\n                <div class=\"current-document-container-timer\">\n                    <span class=\"timer-subtitle\">Длительность</span>\n                    <input type=\"time\" id=\"time\" step=\"2\"/>\n                    <span class=\"timer-metric\">сек</span>\n                </div>\n                <div class=\"current-document-container-nameObject\">\n                    <span>Наименование объекта</span>\n                    <input type=\"text\" id=\"post\" placeholder=\"Placeholder\"/>\n                </div>\n\n                <div class=\"drop-down-menu\">\n                    <div class=\"drop-down-menu-value\">\n                        Имя по умолчанию\n                    </div>\n                    <select class=\"drop-down-menu-selection-field\" required=\"required\">\n                        <option class=\"drop-down-menu-selection-field-value-disabled\" value=\"\">Не выбрано</option>\n                        <option class=\"drop-down-menu-selection-field-value\" value=\"\">Выбрано</option>\n                        <option class=\"drop-down-menu-selection-field-value\" value=\"\">Не выбрано</option>\n                    </select>\n                </div>\n            </div>\n        </div>"
+
+}
+
